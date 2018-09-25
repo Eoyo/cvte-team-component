@@ -6,12 +6,15 @@
 import * as React from "react";
 import * as moment from "moment";
 import { DatePicker, TimePicker, Button } from "antd";
+import "antd/lib/date-picker/style/css";
+import "antd/lib/time-picker/style/css";
+import "antd/lib/button/style/css";
 
 import { Moment } from "moment";
 export type TimePickerDateType = {
-  date: Moment | undefined;
-  startTime: Moment | undefined;
-  endTime: Moment | undefined;
+  date: Moment;
+  startTime: Moment;
+  endTime: Moment;
 };
 export type ScheduleTimePickAction = "setDefault" | "setValue";
 export type ScheduleTimePickProps = {

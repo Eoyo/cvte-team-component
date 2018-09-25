@@ -267,6 +267,7 @@ export function TimePicker3Style(p: Partial<TimePickerStyleValue> = {}) {
   const fullP = Object.assign({}, defaultValue, p);
   style = document.createElement("style");
   let css = StyleCssRender(fullP);
+  style.innerHTML = css;
 
   document.body.appendChild(style);
   return;
