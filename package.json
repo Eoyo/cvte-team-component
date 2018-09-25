@@ -8,8 +8,10 @@
   "deprecated": false,
   "dependencies": {
     "@types/react": "^16.4.7",
+    "@types/react-dom": "^16.0.7",
     "antd": "^3.9.3",
-    "react": "^16.4.2"
+    "react": "^16.4.2",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.4.1",

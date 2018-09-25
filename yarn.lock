@@ -13,10 +13,21 @@
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-1.1.12.tgz#063bf8eccd6e6ac384763f306ccdfde9ce798668"
 
+"@types/node@*":
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.0.tgz#ddd0d67a3b6c3810dd1a59e36675fa82de5e19ae"
+
 "@types/prop-types@*":
   version "15.5.5"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.5.tgz#17038dd322c2325f5da650a94d5f9974943625e3"
   dependencies:
+    "@types/react" "*"
+
+"@types/react-dom@^16.0.7":
+  version "16.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.7.tgz#54d0f867a76b90597e8432030d297982f25c20ba"
+  dependencies:
+    "@types/node" "*"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.4.7":
@@ -1249,6 +1260,15 @@ rc-util@^4.0.4, rc-util@^4.1.0, rc-util@^4.1.1, rc-util@^4.3.0, rc-util@^4.4.0, 
     babel-runtime "6.x"
     prop-types "^15.5.10"
     shallowequal "^0.2.2"
+
+react-dom@^16.5.2:
+  version "16.5.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.5.2.tgz#b69ee47aa20bab5327b2b9d7c1fe2a30f2cfa9d7"
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    schedule "^0.5.0"
 
 react-lazy-load@^3.0.12:
   version "3.0.13"
