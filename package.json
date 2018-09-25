@@ -1,0 +1,33 @@
+{
+  "name": "cvte-team-component",
+  "version": "1.0.0",
+  "main": "./es/index.js",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "description": "type safe for redux in react. powerful state manager.",
+  "deprecated": false,
+  "dependencies": {
+    "@types/react": "^16.4.7",
+    "antd": "^3.9.3",
+    "react": "^16.4.2"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.4.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "work": "tsc --watch"
+  },
+  "keywords": [
+    "typescript",
+    "redux",
+    "react",
+    "state manager",
+    "actor"
+  ],
+  "author": {
+    "name": "liumiao"
+  },
+  "license": "ISC"
+}

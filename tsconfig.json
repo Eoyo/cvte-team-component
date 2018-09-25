@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./es/",
+    "sourceMap": true,
+    "target": "es5",
+    "lib": ["dom", "es7"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "include": ["./src/**/*"]
+}
