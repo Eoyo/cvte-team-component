@@ -23,6 +23,14 @@ export type ScheduleTimePickProps = {
   onChange(data: TimePickerDateType): void;
 };
 
+function stepArr(step = 1, end = 20, start = 0) {
+  const rus = [];
+  for (let i = start; i < end; i += step) {
+    rus.push(i);
+  }
+  return rus;
+}
+
 // faker 组件显示时间
 const getValue = (date: any, startTime: any, endTime: any) => {
   const now = moment().locale("zh-ch");
@@ -32,13 +40,13 @@ const getValue = (date: any, startTime: any, endTime: any) => {
   return `${_date}  ${_startTime}~${_endTime}`;
 };
 
+const OneDayTime = 1000 * 60 * 60 * 24;
 function getTimeStick(day: moment.Moment, time: moment.Moment) {
   return moment(
     day.format("YYYY-M-D") + "/" + time.format("HH:mm"),
     "YYYY-M-D/HH:mm"
   ).valueOf();
 }
-
 const timePickerFormat = "HH     :   mm";
 export class ScheduleTimePicker extends React.Component<ScheduleTimePickProps> {
   constructor(props: any) {
@@ -80,6 +88,53 @@ export class ScheduleTimePicker extends React.Component<ScheduleTimePickProps> {
     });
   };
 
+  disableHour = (h: number) => {
+    const s = this.state;
+    let now = Date.now();
+    let setStartTime = getTimeStick(s.date, moment(`${h}:45`, "H:mm"));
+    if (setStartTime < now) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  disableEndHour = (h: number) => {
+    const s = this.state;
+    let now = Date.now();
+    let setStartTime = getTimeStick(s.date, moment(`${h}:45`, "H:mm"));
+    if (setStartTime < s.startTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  disableMinutes = (m: number) => {
+    const s = this.state;
+    let now = Date.now();
+    let setStartTime = getTimeStick(
+      s.date,
+      moment(`${s.startTime.format("H")}:${m}`, "H:mm")
+    );
+    if (setStartTime < now) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  disableEndMinutes = (m: number) => {
+    const s = this.state;
+    let now = Date.now();
+    let setStartTime = getTimeStick(
+      s.date,
+      moment(`${s.endTime.format("H")}:${m}`, "H:mm")
+    );
+    if (setStartTime < s.startTime.valueOf()) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   // 设置日期的
   setLocalDate = (
     date: moment.Moment,
@@ -107,6 +162,11 @@ export class ScheduleTimePicker extends React.Component<ScheduleTimePickProps> {
 
     this.setState(s);
   };
+
+  config = {
+    hours: stepArr(1, 24),
+    minutes: stepArr(15, 60)
+  };
   render() {
     const { dateVisible } = this.state;
     const { dateValue } = this.props;
@@ -116,6 +176,25 @@ export class ScheduleTimePicker extends React.Component<ScheduleTimePickProps> {
       startTime: startTimeState,
       endTime: endTimeState
     } = this.state;
+    const disable = {
+      day: mo => {
+        return (
+          ((mo.valueOf() / OneDayTime) | 0) < ((Date.now() / OneDayTime) | 0)
+        );
+      },
+      hours: () => {
+        return this.config.hours.filter(this.disableHour);
+      },
+      minutes: () => {
+        return this.config.minutes.filter(this.disableMinutes);
+      },
+      endHours: () => {
+        return this.config.hours.filter(this.disableEndHour);
+      },
+      endMinutes: () => {
+        return this.config.minutes.filter(this.disableEndMinutes);
+      }
+    };
     return (
       <div
         className="schedule-time-picker"
@@ -162,6 +241,7 @@ export class ScheduleTimePicker extends React.Component<ScheduleTimePickProps> {
                   placeholder={"请选择日期"}
                   showToday={false}
                   open={dateVisible}
+                  disabledDate={disable.day}
                   getCalendarContainer={() => {
                     return (
                       document.querySelector(".picker-popup-body-wrapper") ||
@@ -189,6 +269,8 @@ export class ScheduleTimePicker extends React.Component<ScheduleTimePickProps> {
                       document.body
                     );
                   }}
+                  disabledHours={disable.hours}
+                  disabledMinutes={disable.minutes}
                   inputReadOnly={true}
                 />
               </div>
@@ -212,6 +294,8 @@ export class ScheduleTimePicker extends React.Component<ScheduleTimePickProps> {
                       document.body
                     );
                   }}
+                  disabledHours={disable.endHours}
+                  disabledMinutes={disable.endMinutes}
                 />
               </div>
             </div>

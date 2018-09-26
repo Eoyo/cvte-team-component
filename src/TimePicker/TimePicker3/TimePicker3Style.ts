@@ -16,6 +16,44 @@ function StyleCssRender(p: TimePickerStyleValue) {
     background-color: ${p.co_normal_primary};
     color: ${p.co_bg_default};
   }
+  .ant-btn {
+    -webkit-border-radius: 18px;
+    border-radius: 18px;
+    background-color: transparent;
+    height: 30px;
+    line-height: 28px;
+    color: #767676;
+    width: 88px;
+    border: 1px solid #b2b2b2;
+  }
+  
+  .ant-btn.ant-btn-primary {
+    background-color: #3ac3c8;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    border: 0;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
+    border: 1px solid #767676;
+    background-color: #ffffff;
+    color: #343434;
+  }
+  .ant-btn.ant-btn-primary:focus, .ant-btn.ant-btn-primary:active {
+    background-color: #27b4ba;
+    color: #ffffff;
+    border: 0;
+  }
+  .ant-btn.ant-btn-primary:hover {
+    cursor: pointer;
+    background-color: #15ccd3;
+    color: #ffffff;
+    border: 0;
+  }
+
+
   .ant-calendar-selected-date .ant-calendar-date:hover,
   .ant-calendar-selected-start-date .ant-calendar-date:hover,
   .ant-calendar-selected-end-date .ant-calendar-date:hover {
