@@ -1,0 +1,42 @@
+/* summary card 的 toolbar 往左偏一点 */
+
+.summary-editor-card.summary-editor-card {
+  .react-editor {
+    .simditor {
+      .simditor-wrapper {
+        .simditor-toolbar {
+          $leftoffset: 88px;
+          width: 570px - $leftoffset;
+          > ul {
+            padding-left: 0px;
+            margin-left: 146px - $leftoffset;
+            width: 570px - 146px - $leftoffset;
+          }
+          .menu-edit-table {
+            .menu-item {
+              padding: 3px 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes HideMessage {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(10px, 0px);
+  }
+}
+
+.summary-message {
+  transition: opacity 0.5s;
+  &.hide-message {
+    animation: HideMessage 0.5s forwards;
+    opacity: 0;
+  }
+  opacity: 1;
+}

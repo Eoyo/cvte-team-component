@@ -1,0 +1,40 @@
+.drag-drop {
+  width: 100%;
+  min-height: 104px;
+  position: relative;
+  .drag-drop-backgroud {
+    width: 100%;
+    height: 100%;
+  }
+  .show {
+    width: 100%;
+    min-height: 104px;
+    height: 100%;
+    background-color: #3ac3c819;
+    color: $co-normal-primary;
+    font-size: 12px;
+  }
+  .dashed-box-border {
+    border: 1px dashed #e9e9e9;
+    color: #b2b2b2;
+    border-radius: 4px;
+    stroke-dasharray: 5 5;
+  }
+  .org-box-border {
+    border: 1px solid #3ac3c819;
+    color: #158387;
+    border-radius: 4px;
+  }
+  .is-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 104px;
+    margin-bottom: 10px;
+  }
+  .drag-content {
+    min-height: 104px;
+  }
+}

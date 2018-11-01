@@ -1,0 +1,206 @@
+$aircast-modal-width: 290px;
+$aircast-modal-height: 257px;
+.head-menu-line {
+  display: inline-flex;
+  align-items: center;
+}
+.ant-modal-wrap {
+  &.airCast-wrapper {
+    box-sizing: border-box;
+    .ant-modal {
+      width: $aircast-modal-width !important;
+      height: $aircast-modal-height !important;
+      position: fixed;
+      top: 54px;
+      right: 10px;
+      padding: 0;
+      z-index: 30;
+      .ant-modal-content {
+        cursor: auto;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        position: relative;
+        z-index: 30;
+      }
+    }
+    .ant-modal-body {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+    .tip-message {
+      margin-bottom: 10px;
+      height: 25px;
+      @include Title;
+    }
+    .info-message-content {
+      margin-bottom: 20px;
+      line-height: 17px;
+    }
+    .info-message-content-normal {
+      @include Second-title-backup;
+      line-height: 17px;
+    }
+    .info-message-content-tips {
+      @include Second-title-backup;
+      color: #767676;
+      line-height: 17px;
+    }
+    .tip-message-error-code {
+      position: absolute;
+      left: 0px;
+    }
+    .tip-message-change-code {
+      position: absolute;
+      right: 0px;
+      cursor: pointer;
+    }
+  }
+}
+
+#airCast-wrapper {
+  .ant-modal-mask {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+.pincode-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .invalid-message {
+    display: none;
+  }
+  .info-message {
+    display: block;
+  }
+  &.is-error {
+    .invalid-message {
+      @include Second-title-backup;
+      line-height: 17px;
+      color: $co-reject;
+      display: block;
+    }
+    .info-message {
+      display: none;
+    }
+  }
+}
+.airCast-container-frame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  .aircast-opeation-wrapper {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    padding-top: 58px;
+    align-items: center;
+    .operation-btn {
+      display: flex;
+      flex-direction: column;
+
+      .operation-btn-image-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-left: 27px;
+        margin-right: 27px;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-sizing: border-box;
+        border: 1px solid $co-bg-darker;
+        margin-bottom: 9px;
+        &:hover {
+          cursor: pointer;
+          border-color: $co-normal-primary;
+        }
+      }
+      img {
+        height: auto;
+        transform: scale(0.5, 0.5);
+        transform-origin: center center;
+      }
+      .operation-text {
+        @include Second-title;
+      }
+    }
+  }
+  .airconnect-disconnect-btn {
+    color: #d96d5b;
+  }
+}
+.aircast-connect-status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .aircast-connect-status-area {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .tip-message {
+      margin: 0;
+      height: auto;
+    }
+    .sub-tip-message {
+      margin: 0;
+      color: $co-reject;
+    }
+  }
+
+  .aircast-finish-btn {
+    background-color: $co-reject;
+  }
+}
+.aircast-page-container {
+  .aircast-connect-status {
+    margin-top: 10px;
+    @include Main;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .aircast-connect-status-area {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .tip-message {
+      margin: 0;
+      height: auto;
+    }
+    .sub-tip-message {
+      margin-top: 20px;
+      color: $co-reject;
+    }
+  }
+  .aircast-connect-status-icon {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      height: 40px;
+    }
+  }
+}

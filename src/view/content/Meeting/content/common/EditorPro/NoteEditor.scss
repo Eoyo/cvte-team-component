@@ -1,0 +1,9 @@
+.note-editor-title {
+  @include Title-highlight;
+  margin-bottom: 10px;
+}
+
+.saving-toast {
+  margin: 0px 5px;
+  @include Second-title-backup;
+}

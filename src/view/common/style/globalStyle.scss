@@ -1,0 +1,88 @@
+/* 全局作用 */
+@import "./global/base.scss";
+@import "./global/button.scss";
+@import "./global/icon.scss";
+@import "./global/input.scss";
+@import "./global/reset_antd.scss";
+@import "./global/tip-popover.scss";
+
+// @import "./components/style/global/index";
+// @import "./components/style/mixin/index";
+// @import "./components/style/reset_antd.scss";
+// @import "./components/style/skeleton.scss";
+
+// @import "./components/style/FunctionCard/FunctionCard";
+// @import "./components/style/MessageLine/MessageLine";
+// @import "./components/common/file/ReactEditor/ReactEditor";
+
+// @import "./components/bussiness/AirCast/style.scss";
+// @import "./components/bussiness/Meeting/MeetingStyle.scss";
+// /* component */
+// /* 联系人列表 */
+// @import "./components/bussiness/ContactList/style.scss";
+// /* 联系人信息备注 */
+// @import "./components/bussiness/ContactInfomationCard/editRemark/style.scss";
+
+// /* 联系人信息 */
+// @import "./components/bussiness/ContactInfomationCard/style.scss";
+
+// /* 团队信息 */
+// @import "./components/bussiness/GroupMessage/style.scss";
+
+// /* 管理团队成员信息 */
+// @import "./components/bussiness/AddGroup/style.scss";
+// /* 搜索添加 */
+// @import "./components/bussiness/ContactSearchAdd/style.scss";
+// /* 搜索结果 */
+// @import "./components/common/SearchResult/style.scss";
+// /* 错误信息 */
+// @import "./components/common/ExtraErrorText/style.scss";
+// /* 会议详情成员管理 */
+// @import "./components/common/meeting/AttendingList/AttendingList.scss";
+
+// /* 文件卡片 */
+// @import "./components/bussiness/Meeting/Piece/List/FileListViewer/FileList/OneFileCard.scss";
+
+// * {
+//   user-select: none;
+//   font-family: $mac-zh-default-font, $win-zh-default-font, $zh-backup-font,
+//     $en-font, $en-backup-font, $en-secondary-backup-font !important;
+// }
+// input,
+// textarea {
+//   user-select: auto;
+// }
+// html,
+// body,
+// #root,
+// .top-container {
+//   margin: 0;
+//   padding: 0;
+//   width: 100%;
+//   height: 100%;
+//   box-sizing: border-box;
+// }
+
+// .dir-btn,
+// .avatar-wrap {
+//   flex-shrink: 0;
+// }
+// .text-ellipsis {
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   line-clamp: 1;
+//   -webkit-line-clamp: 1;
+// }
+// .contact-list-card-placeholder {
+//   width: 200px;
+//   height: 200px;
+//   box-sizing: content-box;
+//   padding-bottom: 46px;
+// }
+
+// .simditor-icon {
+//   font-family: "font_family", "Simditor" !important;
+// }
+
+// */

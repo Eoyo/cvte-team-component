@@ -1,0 +1,128 @@
+$editablewith: 75px;
+$member-grid-height: 57px;
+$mingridHeight: 114px;
+$maxgridHeight: 228px;
+
+.team-info-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .group-base-message {
+    padding: 30px;
+    padding-bottom: 18px;
+    background: white;
+  }
+  .group-members {
+    background: white;
+    height: calc(100% - 120px);
+    width: 100%;
+    padding: 30px;
+    padding-top: 0px;
+  }
+  .group-top-line {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    .group-message-title {
+      font-size: 18px;
+    }
+    .teams-icon {
+      width: 20px;
+      height: 20px;
+      margin-left: 20px;
+    }
+  }
+  // group-member-list; 根据布局顺序写样式
+  .group-members-title {
+    display: inline-block;
+    width: 100%;
+  }
+  .group-members-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+    line-height: 20px;
+    .group-members-info-title {
+      font-size: 14px;
+      color: #1b1b1b;
+    }
+  }
+  .memberlist-line {
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+  .group-base-body-memberList {
+    height: calc(100% - 48px);
+  }
+
+  .member-list {
+    width: 600px;
+    padding: 10px 0 0;
+    /*overflow-y: scroll;*/
+    /*min-height: $mingridHeight;
+    max-height: $maxgridHeight;*/
+    margin-bottom: 30px;
+    &:after {
+      clear: both;
+      display: block;
+      content: "";
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+  }
+}
+.group-members-addmembers-button {
+  border: 0;
+  outline: 0;
+  @include Second-title;
+  width: 14px;
+  &:hover {
+    cursor: pointer;
+    @include Second-title-highlight;
+  }
+  .teams-icon {
+    vertical-align: middle;
+  }
+  .group-members-addmembers-text {
+    vertical-align: middle;
+  }
+}
+
+.group-memeber-info {
+  width: 145px;
+  float: left;
+  height: $member-grid-height;
+
+  .flex-one-row {
+    display: flex;
+  }
+  .person-body {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 10px;
+    line-height: 1.4;
+    .person-name {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
+    }
+    .person-not-regiter {
+      flex: 1;
+      align-self: flex-start;
+      color: $co-reject;
+    }
+  }
+}
+.group-message-btns {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}

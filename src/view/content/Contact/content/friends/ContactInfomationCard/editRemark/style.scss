@@ -1,0 +1,30 @@
+/* editRemark */
+.editRemark-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: $second-title-fs;
+}
+.editRemark-show {
+  display: inline;
+}
+
+.editRemark-hide {
+  display: none !important;
+}
+
+.editRemark-input {
+  border-style: none !important;
+  height: 100%;
+}
+
+.editRemark-alert {
+  display: inline-block;
+  padding: 0px !important;
+  height: 20px !important;
+  // width: 100px !important;
+}
+
+.editRemark-check {
+  width: 20px !important;
+}

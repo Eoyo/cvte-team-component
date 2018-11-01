@@ -1,0 +1,75 @@
+.repeat-time-selector-wrapper {
+  width: 519px;
+}
+.repeat-time-selector-middle-content-wrapper {
+  padding: 0 20px;
+  .repeat-time-selector-checkbox-group {
+    margin-top: 20px;
+    margin-bottom: 18px;
+  }
+  .repeat-time-selector-date-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    border: 1px solid #dcdfe6;
+    border-radius: 5px;
+    align-items: center;
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 28px;
+    .repeat-time-selector-date-title {
+      &::before {
+        content: "*";
+        color: red;
+      }
+    }
+    .repeat-time-select-date-picker-icon {
+      align-items: center;
+    }
+    .repeat-time-selector-date-picker {
+      height: 26px;
+      padding: 0 30px;
+      color: #767676;
+      font-size: 12px;
+      border-style: none;
+      width: 380px;
+      box-sizing: border-box;
+      display: inline-block;
+      outline: none;
+    }
+  }
+}
+.repeat-time-select-date-picker-wrapper {
+  padding: 0;
+  .ant-popover-arrow {
+    display: none !important;
+  }
+}
+.repeat-time-selector-title {
+  width: 100%;
+  height: 48px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .repeat-time-selector-title-content {
+    font-size: 14px;
+    color: #343434;
+  }
+  .ant-switch-checked {
+    background-color: #3ac3c8;
+  }
+}
+
+.repeat-time-selector-btns-group {
+  width: 100%;
+  padding: 20px 8px;
+  height: 70px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .repeat-time-selector-btn {
+    margin-right: 5px;
+  }
+}

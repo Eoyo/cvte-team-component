@@ -1,0 +1,22 @@
+.meeting-content-editor.meeting-content-editor {
+  .simditor .simditor-wrapper .simditor-toolbar {
+    top: -38px !important;
+  }
+  .simditor .simditor-body,
+  #simditor-editor {
+    min-height: 64px;
+    padding: 6px 10px;
+    &.editing-simditor {
+      min-height: 64px;
+    }
+  }
+  .simditor {
+    border-color: #e9e9e9;
+  }
+  .content-viewer {
+    min-height: 66px;
+    border: 1px solid #e9e9e9;
+    border-radius: 4px;
+    padding: 6px 10px;
+  }
+}

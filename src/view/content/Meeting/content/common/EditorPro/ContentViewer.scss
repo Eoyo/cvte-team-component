@@ -1,0 +1,14 @@
+.html-iframe-viewer {
+  border: none;
+  width: 100%;
+  overflow: hidden;
+}
+
+.meeting-card-editor {
+  .meeting-card-editor-detail-status {
+    @include Second-title;
+  }
+  .editor-style.editor-style {
+    padding: 0px;
+  }
+}

@@ -1,0 +1,97 @@
+/* ===================== 颜色 =========================== */
+/* important message */
+$co-lighter-primary: #e3f0f0;
+$co-normal-primary: #3ac3c8;
+$co-draker-primary: #04bbc2;
+$co-hover-primary: #cdeeef;
+
+/* 文件上传的显示 */
+$co-lighter-word: #dbefff;
+$co-lighter-excel: #d9eadb;
+$co-lighter-ppt: #ffe4dd;
+$co-lighter-pdf: #ffd5c6;
+
+$co-lighter-zip: #d7e3ef;
+$co-lighter-rar: #eee4e1;
+$co-lighter-txt: #e6e6e6;
+$co-lighter-pic: #d2f5e9;
+
+$co-lighter-unknown: #eae8f0;
+
+/* background border */
+$co-bg-default: #ffffff;
+$co-bg: #f9f9f9;
+$co-bg-darker: #e9e9e9;
+
+$co-bg-selected-grey: #f2f2f2;
+$co-bg-calendar-grey: #f7f7f7;
+/* text */
+$co-lighter-grey: #b2b2b2;
+$co-grey: #767676;
+$co-darker-grey: #1e1e1e;
+
+/* message */
+$co-highlight: #f96d58;
+$co-error: #ed4848;
+$co-success: #92d163;
+$co-warning: #f1c262;
+$co-info: #74c0ec;
+$co-reject: #d96d5b;
+/* ===================== 文本 =========================== */
+
+$mac-zh-default-font: PingFangSC-Regular;
+$win-zh-default-font: Microsoft YaHei;
+$zh-backup-font: STXihei;
+
+$en-font: PingFangSC-Regular;
+$en-backup-font: Helvetica;
+$en-secondary-backup-font: ArialMT;
+
+$title-fs: 18px;
+$main-fs: 14px;
+$second-title-fs: 12px;
+
+/* 按钮 */
+$btn-primary-height: 36px;
+$btn-primary-width: 200px;
+$btn-secondary-height: 30px;
+$btn-secondary-width: 88px;
+
+$btn-disable-alpha: 0.4;
+$icon-btn-size: 30px;
+$co-btn-hover: #15ccd3;
+$co-btn-press: #27b4ba;
+
+/* 弹窗 */
+$co-dark: #000000;
+$modal-width: 246px;
+$modal-height: 172px;
+
+/* 通用信息展示 */
+/* 用户头像 */
+$avatar-small-size: 30px;
+$avatar-middle-size: 40px;
+$avatar-big-size: 60px;
+
+/* 团队头像 */
+$team-style1-text: #8ac9ed;
+$team-style1-border: #c4e4f6;
+$team-style2-text: #b2b2b2;
+$team-style2-border: #d8d8d8;
+$team-style3-text: #f2c76e;
+$team-style3-border: #f8e3b6;
+$team-style4-text: #a3db79;
+$team-style4-border: #d1edbc;
+$team-style5-text: #e89a8d;
+$team-style5-border: #f3ccc6;
+
+$text-avatar-middle-fs: 18px;
+$text-avatar-small-fs: 14px;
+
+/* 左导航栏 */
+$function_nav_width: 60px;
+
+/* 卡片宽度*/
+$card-width: 570px;
+$list-width: 240px;
+$menu-width: 240px;

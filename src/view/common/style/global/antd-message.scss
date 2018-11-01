@@ -1,0 +1,109 @@
+$icon-size: 20px;
+$toast-width: 226px;
+
+.ant-message {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.65);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: fixed;
+  z-index: 1010;
+  width: 100%;
+  top: 16px;
+  left: 0;
+  pointer-events: none;
+}
+.ant-message-notice {
+  padding: 8px;
+  text-align: center;
+}
+.ant-message-notice:first-child {
+  margin-top: -8px;
+}
+.ant-message-notice-content {
+  padding: 14px 14px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: rgba(52, 52, 52, 0.8);
+  display: inline-block;
+  color: white;
+  pointer-events: all;
+  width: auto;
+  height: auto;
+  min-height: 50px;
+  width: $toast-width;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ant-message-custom-content {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  // 显示文字的部分
+  > span {
+    max-width: $toast-width - 2 * $icon-size - 5px;
+    word-break: break-all;
+    white-space: pre-line;
+    text-align: left;
+  }
+}
+
+.ant-message-success .anticon {
+  &::before {
+    content: "";
+    display: inline-block;
+    background-image: url(~/assets/images/toast/success.svg);
+    background-position: center;
+    background-origin: center;
+    background-size: 100%;
+    width: $icon-size;
+    height: $icon-size;
+  }
+}
+.ant-message-error .anticon,
+.ant-message-warning .anticon,
+.ant-message-info .anticon {
+  &::before {
+    content: "";
+    display: inline-block;
+    background-position: center;
+    background-origin: center;
+    background-size: 100%;
+    background-image: url(~/assets/images/toast/warning.svg);
+    width: $icon-size;
+    height: $icon-size;
+  }
+}
+.ant-message-loading .anticon {
+  &::before {
+    color: $co-info;
+    content: "";
+    display: inline-block;
+    background-position: center;
+    background-origin: center;
+    background-size: 100%;
+    background-image: url(~/assets/images/toast/teams-loading.svg);
+    width: $icon-size;
+    height: $icon-size;
+    animation-duration: 2s;
+  }
+}
+.ant-message .anticon {
+  margin-right: 8px;
+  font-size: 16px;
+  top: 1px;
+  position: relative;
+}

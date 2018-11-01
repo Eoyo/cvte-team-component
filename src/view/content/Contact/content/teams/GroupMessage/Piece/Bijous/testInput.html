@@ -1,0 +1,21 @@
+<div>
+  测试输入发使用的占位符号是啥.
+  <input type="text" id="input">
+</div>
+
+<script>
+  const input = document.getElementById('input');
+  input.oninput = (ev) => {
+    let str = ev.target.value || '';
+    const arr = str.split('');
+
+
+    console.log(arr);
+    let newValue = arr.join('').replace(
+      /[^a-zA-Z0-9\u4E00-\u9FA5\s_'"]/g,
+      ""
+    );
+    input.value = newValue;
+    console.log(newValue);
+  }
+</script>

@@ -1,0 +1,192 @@
+.add-group-modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+  width: 100%;
+}
+.person-list,
+.group-list {
+  .person-list-content,
+  .group-list-container {
+    overflow: hidden;
+    transition: all 0.5s;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .person-list-wrapper,
+  .group-list-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 40px;
+    margin-top: 12px;
+
+    .person-list-pre,
+    .group-list-pre {
+      display: flex;
+      align-items: center;
+    }
+    .person-list-title,
+    .group-list-title {
+      @include Main-highlight;
+      font-weight: 400;
+    }
+    .dir-btn {
+      margin-right: 10px;
+    }
+    .person-list-num,
+    .group-list-num {
+      @include Second-title-backup;
+    }
+  }
+  .group-list-wrapper {
+    margin-top: 10px;
+  }
+}
+/* 团队列表的团队item */
+.member-list-group-item {
+  .member-list-group-item-body {
+    display: flex;
+    align-items: center;
+  }
+  .member-list-group-item-memberList-item-group {
+    flex: 1;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    .member-list-group-item-memberList-item-name {
+      flex: 1;
+      text-align: left;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+    }
+  }
+  .group-list-content {
+    &.close {
+      display: none;
+    }
+  }
+}
+
+@mixin fill-in {
+  width: 100% !important;
+  height: 100% !important;
+}
+.group-message {
+  width: $card-width;
+  .ant-modal-mask {
+    background-color: rgba(52, 52, 52, 0.3) !important;
+  }
+  .group-list {
+    margin-top: 20px;
+  }
+}
+.member-list-one-person,
+.member-list-group-item {
+  padding-top: 10px;
+}
+
+.member-list-group-item-memberList-item_all-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: -10px;
+  @include Second-title-backup;
+}
+.group-list-content .member-list-one-person {
+  padding-left: 10px;
+}
+
+.select-description {
+  @include Second-title-backup;
+  text-align: left;
+  .select-highlight-description {
+    @include Second-title;
+    margin: 0 3px;
+  }
+}
+.selected-list {
+  .person-name {
+    @include Second-title;
+  }
+}
+.add-group-modal-wrapper {
+  .btn-list {
+    display: flex;
+    .btn-space {
+      margin-left: 10px;
+    }
+  }
+}
+.person-selector {
+  .teams-icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+}
+
+.over-modal-popover {
+  z-index: 1055;
+  .ant-popover-arrow {
+    display: none;
+  }
+  .ant-popover-inner-content {
+    padding: 0;
+    height: 100%;
+  }
+  .ant-popover-content {
+    height: 100%;
+  }
+  .ant-popover-inner {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    height: 100%;
+  }
+  .ant-popover-inner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.addgroud-search-people {
+    @include modal-bg;
+    width: 220px;
+    padding-top: 0;
+  }
+  .search-result-container {
+    width: 100%;
+  }
+  .searchResult-in-picker {
+    margin-top: 0;
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+.search-people-not-found-result {
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+.search-people-found-result {
+  margin: 10px;
+}
+.search-people-box {
+  // margin-left: -20px;
+  // padding-left: 30px;
+  padding-left: 10px;
+  .search-input {
+    width: 190px;
+  }
+}
+
+.adding-offset {
+  display: none;
+}

@@ -1,0 +1,48 @@
+@import "./view/common/style/globalStyle.scss";
+* {
+  font-family: $mac-zh-default-font, $win-zh-default-font, $zh-backup-font,
+    $en-font, $en-backup-font, $en-secondary-backup-font !important;
+}
+input,
+textarea {
+  user-select: auto;
+}
+
+[class*="btn"] {
+  * {
+    user-select: none;
+  }
+  user-select: none;
+}
+
+.dir-btn,
+.avatar-wrap {
+  flex-shrink: 0;
+}
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+}
+.contact-list-card-placeholder {
+  width: 200px;
+  height: 200px;
+  box-sizing: content-box;
+  padding-bottom: 46px;
+}
+
+.simditor-icon {
+  font-family: "font_family", "Simditor" !important;
+  font-size: 14px;
+}
+
+// 保证windows上的显示一致
+#root {
+  i {
+    background-color: transparent;
+    background-position: center;
+    background-size: 100%;
+  }
+}

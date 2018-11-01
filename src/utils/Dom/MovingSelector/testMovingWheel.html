@@ -1,0 +1,44 @@
+<div id="div">
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+  <p>
+    wheel
+  </p>
+</div>
+<style>
+  #div {
+    width: 300px;
+    height: 100px;
+    border: 1px solid gray;
+    overflow: scroll;
+  }
+</style>
+
+<script>
+  const div = document.getElementById('div');
+  div.addEventListener('mousewheel', ev => {
+    console.log(ev);
+  })
+</script>

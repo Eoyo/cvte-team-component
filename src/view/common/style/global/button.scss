@@ -1,0 +1,46 @@
+/* 重要按钮 */
+.btn {
+  @include btn($btn-primary-height);
+  border-radius: 18px;
+  width: $btn-primary-width;
+  &.disable {
+    opacity: $btn-disable-alpha;
+    cursor: not-allowed;
+  }
+}
+
+/* 次要按钮 */
+
+.btn-secondary {
+  @include btn($btn-secondary-height);
+  border-radius: 15px;
+  width: $btn-secondary-width;
+  &.disable {
+    opacity: $btn-disable-alpha;
+    cursor: not-allowed;
+  }
+}
+
+.btn-deafult {
+  background-color: transparent;
+  height: $btn-secondary-height;
+  color: $co-grey;
+  width: $btn-secondary-width;
+  border: 1px solid $co-lighter-grey;
+  &:hover {
+    cursor: pointer;
+    color: $co-darker-grey;
+    border: 1px solid $co-grey;
+  }
+  &:focus,
+  &:active {
+    background-color: $co-darker-grey;
+    color: $co-bg-default;
+  }
+}
+
+/* 图标文字 */
+
+/* 图标按钮 */
+
+/* 勾选 */

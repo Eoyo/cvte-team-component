@@ -1,0 +1,75 @@
+$pos: 10px;
+$size-close-btn: 16px;
+.meeting-pop {
+  position: relative;
+  padding: 20px;
+  .close-btn {
+    position: absolute;
+    top: $pos;
+    right: $pos;
+    width: $size-close-btn;
+    height: $size-close-btn;
+    border-radius: 100%;
+    line-height: $size-close-btn;
+    font-size: $size-close-btn - 2px;
+  }
+  .p-title,
+  .p-message {
+    text-align: center;
+  }
+  .p-title {
+    font-size: 18px;
+    line-height: 25px;
+    color: #1e1e1e;
+  }
+  .p-message {
+    font-size: 12px;
+    line-height: 20px;
+    color: #767676;
+  }
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    > * {
+      margin: 5px;
+    }
+  }
+  .send-summary-btn {
+    .ant-modal-mask {
+      background-color: rgba(52, 52, 52, 0);
+    }
+  }
+}
+
+.ant-modal-wrap {
+  &.send-summary-btn-multi-people-wrapper {
+    .ant-modal {
+      height: 162px !important;
+      .ant-modal-title {
+        @include Main-highlight;
+      }
+      .ant-modal-body {
+        height: 0px !important;
+        padding-top: 30px !important;
+      }
+    }
+    .ant-btn {
+      width: 88px;
+    }
+  }
+  &.send-summary-btn-single-people-wrapper {
+    .ant-modal {
+      height: 140px !important;
+      .ant-modal-title {
+        @include Main-highlight;
+      }
+      .ant-modal-body {
+        height: 0px !important;
+        padding-top: 30px !important;
+      }
+    }
+    .ant-btn {
+      width: 88px;
+    }
+  }
+}

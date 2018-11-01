@@ -1,0 +1,34 @@
+<style>
+  .block {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    background: #1e1e1e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transform: scale(1);
+    margin: 50px 100px;
+    transition: all .5s;
+  }
+
+  .parent {
+    border: 10px solid gray;
+    position: relative;
+  }
+</style>
+
+<div class="block">Block</div>
+<div class="parent">
+  <div class="block" id="fw">Block</div>
+</div>
+
+<script>
+  const fw = document.getElementById('fw');
+
+  const rec = fw.getBoundingClientRect();
+
+  fw.innerHTML = rec.top + 'px';
+</script>

@@ -1,0 +1,374 @@
+/*
+ * @File: 重置antd样式
+ * @Date: 2018-08-02 08:42:12
+ * @Last Modified by: xutao@cvte.com
+ * @Last Modified time: 2018-10-23 21:10:06
+ */
+@import "./antd-message.scss";
+
+.function_nav {
+  .ant-menu-dark.ant-menu-inline .ant-menu-item,
+  .ant-menu-dark.ant-menu-inline .ant-menu-submenu-title {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  .ant-menu.ant-menu-dark .ant-menu-item-selected,
+  .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    background-color: transparent;
+  }
+}
+//
+.ant-dropdown-menu {
+  padding: 0;
+}
+//   left sider 重置menu选中状态
+.ant-menu-item-selected.function_nav_item {
+  background-color: $co-bg !important;
+  &:hover {
+    cursor: pointer;
+    background-color: $co-bg !important;
+    border-bottom: 0 !important;
+  }
+}
+
+#root {
+  .ant-menu-item:active {
+    background: $co-bg-selected-grey;
+  }
+  .ant-menu-submenu-title:active {
+    background: #fff;
+  }
+}
+.ant-menu-item.function_nav_item,
+.ant-menu-item-selected.function_nav_item {
+  background-color: $co-bg !important;
+  &:after {
+    display: none;
+  }
+}
+// 头部header nav
+.header_nav_item {
+  @include Second-title;
+  cursor: default !important;
+  padding-right: 30px;
+  padding-left: 0;
+  background-color: $co-bg-default !important;
+  color: $co-grey !important;
+  margin-bottom: 0 !important;
+  top: 0 !important;
+  border-bottom: 0 !important;
+
+  // 兼容popover算法
+  &:last-child {
+    padding-right: 0;
+    margin-right: 10px;
+    .main-content-header__nav-item {
+      padding-right: 20px;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $co-bg-default !important;
+    border-bottom: 0 !important;
+    color: $co-darker-grey !important;
+    .main-content-header__nav-item {
+      color: $co-darker-grey !important;
+    }
+  }
+  > div {
+    cursor: pointer;
+  }
+  &.no-class_header_nav {
+    padding: 0;
+    border-bottom: 0 !important;
+    &:hover,
+    &:active,
+    &:focus {
+      border-bottom: 0 !important;
+      background-color: transparent !important;
+    }
+  }
+  .aircast-diver {
+    width: 1px;
+    height: 14px;
+    background-color: #ebebeb;
+    margin-right: 30px;
+  }
+}
+
+/* 联系人列表 */
+.contacts-menu-wrapper {
+  .ant-menu-item-group-title {
+    border-bottom: 1px solid $co-bg-darker !important;
+    @include Second-title;
+    margin-top: 5px;
+  }
+  .ant-menu-submenu-arrow {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    background-image: url(~/assets/images/collsape/collsape-shrink.svg) !important;
+    width: 10px;
+    height: 10px;
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  .ant-menu-submenu-open {
+    .ant-menu-submenu-arrow {
+      background-image: url(~/assets/images/collsape/collsape-extend.svg) !important;
+    }
+  }
+  .ant-menu-item,
+  .ant-menu-submenu-title {
+    padding-left: 40px !important;
+  }
+
+  .ant-menu-item-selected {
+    &:after {
+      display: none !important;
+    }
+  }
+  .ant-menu-sub.ant-menu-inline .ant-menu-item-group-title {
+    padding-left: 0 !important;
+    margin: 0 !important;
+    margin-left: 40px !important;
+    padding: 0;
+    height: 38px !important;
+    line-height: 38px !important;
+    padding-bottom: 2px;
+  }
+}
+
+/* 联系人item */
+.contacts-list,
+.teams-list {
+  .ant-menu-item-selected {
+    background-color: $co-bg-selected-grey !important;
+    @include Main;
+  }
+  .ant-menu-submenu-title {
+    &:active,
+    &:focus {
+      background-color: $co-bg-default;
+    }
+    width: 100% !important;
+  }
+  .ant-menu-item {
+    margin: 0 !important;
+    line-height: 50px !important;
+    height: 50px !important;
+  }
+}
+.contacts-list {
+  padding-top: 12px;
+}
+.teams-list {
+  padding-top: 2px;
+}
+
+/* 联系人卡片 */
+.contactInfomationCard-more-popover {
+  .ant-popover-arrow {
+    display: none;
+  }
+  .ant-popover-inner-content {
+    padding: 0;
+  }
+}
+.contactInfomationCard-startInfo-more-wrapper {
+  background-color: $co-bg-default !important;
+  border: 1px solid $co-bg-darker !important;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1) !important;
+  border-radius: 4px !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  .ant-dropdown-menu-item,
+  .ant-menu-item,
+  .contactInfomationCard-startInfo-leftbottom-operation {
+    background-color: $co-bg-default;
+    width: 100px;
+    padding: 1px 0px 1px 0px;
+    height: 19px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    text-align: center;
+    @include Second-title;
+    &:hover {
+      cursor: pointer;
+      border: none;
+      border-radius: 0;
+      color: #000000 !important;
+      background-color: $co-bg-selected-grey !important;
+    }
+  }
+  .contactInfomationCard-startInfo-leftbottom-logout-operation {
+    .contactInfomationCard-startInfo-hr {
+      border: none;
+      margin: 0px 0px 2px 0px;
+      background-color: $co-bg-darker;
+      height: 1px;
+    }
+    background-color: $co-bg-default;
+    width: 100px;
+    padding: 2px 0px 0px 0px;
+    height: 23px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    text-align: center;
+  }
+  .contactInfomationCard-startInfo-more-operation {
+    background-color: $co-bg-default;
+    width: 100px;
+    margin: 0 !important;
+    height: 25px !important;
+    line-height: 25px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    text-align: center;
+    @include Second-title;
+    &:hover {
+      cursor: pointer;
+      border: none;
+      border-radius: 0;
+      color: #000000 !important;
+      background-color: $co-bg-selected-grey !important;
+    }
+  }
+  .contactInfomationCard-startInfo-teams-btn {
+    padding-left: 14px;
+    text-align: unset;
+  }
+}
+.more-operation-wrapper {
+  padding: 7px 0 !important;
+}
+.contactInfomationCard-delete-btn-font {
+  display: block;
+  line-height: 17px !important;
+  height: 17px !important;
+}
+/* 团队卡片 */
+.group-base-more-popover {
+  .ant-popover-arrow {
+    display: none;
+  }
+  .ant-popover-inner-content {
+    padding: 0;
+  }
+}
+
+/* 弹窗之类的 */
+
+.ant-modal {
+  @include modal-bg;
+  padding-bottom: 0;
+}
+
+[ant-click-animating-without-extra-node]:after,
+.ant-click-animating-node {
+  animation: none !important;
+  -webkit-animation: none !important;
+}
+
+.ant-btn {
+  border-radius: 18px;
+  background-color: transparent;
+  height: $btn-secondary-height;
+  line-height: $btn-secondary-height - 2px;
+  color: $co-grey;
+  width: $btn-secondary-width;
+  border: 1px solid $co-lighter-grey;
+  &:hover,
+  &:focus,
+  &:active {
+    border: 1px solid $co-grey;
+    background-color: $co-bg-default;
+    color: $co-darker-grey;
+  }
+  &.ant-btn-primary {
+    background-color: $co-normal-primary;
+    height: $btn-secondary-height;
+    line-height: $btn-secondary-height;
+    color: $co-bg-default;
+    border: 0;
+    font-size: $main-fs;
+    font-weight: normal;
+    &:hover {
+      cursor: pointer;
+      background-color: $co-btn-hover;
+      color: $co-bg-default;
+      border: 0;
+    }
+    &.ant-btn-lg {
+      width: $btn-primary-width;
+      height: $btn-primary-height;
+      line-height: $btn-primary-height;
+    }
+    &.disable,
+    &[disabled] {
+      opacity: $btn-disable-alpha;
+      cursor: not-allowed;
+    }
+
+    &:focus,
+    &:active {
+      background-color: $co-btn-press;
+      color: $co-bg-default;
+      border: 0;
+    }
+  }
+}
+
+.ant-input {
+  height: 30px !important;
+}
+/* 弹窗蒙版 */
+.ant-modal-mask {
+  background-color: rgba(52, 52, 52, 0.3);
+  z-index: 1050;
+}
+.ant-modal-wrap {
+  z-index: 1051;
+  .anticon {
+    display: none;
+  }
+  .ant-modal-header,
+  .ant-modal-footer,
+  .ant-modal-body {
+    border: 0;
+    padding: 0;
+  }
+  .ant-modal-body {
+    height: 57px;
+    padding-top: 10px;
+    @include Second-title;
+  }
+  .ant-modal {
+    /*     width: $modal-width !important;*/
+    height: $modal-height !important;
+  }
+  .ant-modal-content {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    padding: 30px;
+    box-shadow: none;
+  }
+  .ant-confirm-title,
+  .ant-modal-title {
+    @include Title-highlight;
+  }
+}
+.contact-list-card {
+  .ant-modal-mask {
+    background-color: rgba(52, 52, 52, 0);
+  }
+}
+
+.ant-menu-vertical {
+  border-right: 0;
+}

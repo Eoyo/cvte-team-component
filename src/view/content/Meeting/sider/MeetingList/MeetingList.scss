@@ -1,0 +1,240 @@
+$co-title-height: 20px;
+$co-content-height: 17px;
+.meeting-list {
+  .meeting-list-empty-content {
+    padding-top: 53px;
+    @include Main-second-backup;
+    text-align: center;
+  }
+  .meeting-list-menu-item {
+    padding-left: 20px !important;
+    padding-right: 0px !important;
+    margin: 0px !important;
+    position: relative;
+    // .inviting-conflict,
+    // .waiting-update,
+    // .inMeeting-summary,
+    // .inMeeting-delay,
+    // .justEnd-summary,
+    // .summarySend,
+    // .schedule
+    // .inviting
+    // .waiting
+    // .inMeeting
+    // .justEnd
+    // .none
+    /*列表中每一个卡片的样式，包含title，time，status*/
+    .meeting-list-card {
+      .meeting-title {
+        line-height: $co-title-height;
+        margin-bottom: 8px;
+        margin-top: 11px;
+
+        .meeting-title-inviting {
+          width: 179px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          @include Main;
+        }
+        .meeting-title-schedule {
+          @include Main;
+        }
+        .meeting-title-flex {
+          display: flex;
+          align-items: center;
+          height: 20px;
+          .meeting-title-inviting-time {
+            color: #ed4848;
+          }
+          .meeting-title-red-point {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #ed4848;
+            margin-right: 12px;
+          }
+          .meeting-title-conflict-title {
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: absolute;
+            left: 40px;
+            @include Main;
+          }
+          .meeting-title-update-title {
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: absolute;
+            left: 40px;
+            @include Main;
+          }
+          .meeting-title-conflict {
+            position: absolute;
+            right: 20px;
+            width: 28px;
+            height: 14px;
+            border-radius: 7px;
+            background-image: url(~/assets/images/meeting_status/conflict.svg);
+          }
+          .meeting-title-update {
+            position: absolute;
+            right: 20px;
+            width: 28px;
+            height: 14px;
+            border-radius: 7px;
+            background-image: url(~/assets/images/meeting_status/update.svg);
+          }
+        }
+        .meeting-title-other {
+          width: 199px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          @include Main;
+        }
+      }
+      .meeting-time {
+        line-height: $co-content-height;
+        margin-bottom: 2px;
+        .meeting-time-schedule {
+          @include Second-title-backup;
+        }
+        .meeting-time-hour-minute {
+          @include Second-title;
+        }
+        .meeting-time-send-summary {
+          @include Second-title;
+        }
+      }
+      .meeting-status {
+        line-height: $co-content-height;
+        margin-bottom: 11px;
+        .meeting-status-schedule {
+          @include Second-title-backup;
+        }
+        .meeting-status-inviting {
+          .meeting-status-content {
+            width: 133px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            &.meeting-status-inviting-pos {
+              margin-bottom: 8px;
+              @include Second-title;
+            }
+            &.meeting-status-pos {
+              @include Second-title;
+            }
+          }
+          .meeting-status-inviting-status {
+            margin-top: 8px;
+            @include Second-title-backup;
+          }
+        }
+        .meeting-status-org {
+          display: flex;
+          padding-right: 20px;
+          .meeting-status-content {
+            width: 133px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            &.meeting-status-pos {
+              @include Second-title;
+            }
+            &.meeting-status-note {
+              @include Second-title;
+            }
+          }
+          .meeting-status-backup-status {
+            @include Second-title-backup;
+            margin-left: 31px;
+          }
+          .meeting-status-org-status {
+            @include Second-title-highlight;
+            margin-left: 31px;
+          }
+          .meeting-status-meeting-delay {
+            @include Second-title-highlight;
+            color: $co-reject;
+            margin-left: 31px;
+          }
+        }
+      }
+
+      .menu-item {
+        box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+  .meeting-list-submenu {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    .meeting-list-submenu-day {
+      @include Main;
+    }
+    .meeting-list-submenu-num {
+      @include Second-title-backup;
+    }
+    .meeting-list-submenu-num-has-inviting {
+      color: $co-highlight;
+    }
+  }
+  .meeting-list-num {
+    @include Second-title-backup;
+  }
+  .meeting-list-menu-divider {
+    border: none;
+    margin: 0px;
+    background-color: $co-bg-selected-grey !important;
+    height: 1px;
+  }
+  .ant-menu-item-selected {
+    background-color: $co-bg-selected-grey !important;
+    &:after {
+      display: none !important;
+    }
+  }
+  .ant-menu-submenu-arrow {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    background-image: url(~/assets/images/collsape/collsape-shrink.svg) !important;
+    width: 10px;
+    height: 10px;
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  .ant-menu-submenu-open {
+    .ant-menu-submenu-arrow {
+      background-image: url(~/assets/images/collsape/collsape-extend.svg) !important;
+    }
+  }
+  .ant-menu-submenu-title {
+    padding-left: 40px !important;
+    padding-right: 20px !important;
+    @include Second-title;
+    margin-bottom: 10px !important;
+    margin-top: 26px !important;
+    width: 100% !important;
+    line-height: 17px !important;
+    height: 17px !important;
+  }
+  .ant-menu-item {
+    width: calc(100% - 1px);
+    height: 100% !important;
+    margin-left: 1px !important;
+  }
+  /*让会议item全部显示*/
+  .ant-menu-inline {
+    height: 100% !important;
+  }
+}

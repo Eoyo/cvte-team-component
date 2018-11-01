@@ -1,0 +1,35 @@
+.group-message-shower {
+  display: flex;
+  font-weight: normal;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1b1b1b;
+  .group-message-words {
+    margin-right: 10px;
+  }
+  .descript {
+    color: #767676;
+  }
+  .group-message-line {
+    display: flex;
+    height: 18px;
+    margin-right: 40px;
+    align-items: center;
+    &.full-line {
+      flex-basis: 100%;
+      flex-shrink: 0;
+      margin-right: 0;
+      height: 30px;
+      margin-bottom: 24px;
+      display: flex;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    .teams-icon {
+      margin-left: 6px;
+    }
+  }
+}

@@ -1,0 +1,117 @@
+/* default not border */
+$co-default-search-bg: #f4f4f4;
+$input-search-border-radius: 16px;
+/* active */
+$co-active-search-bg: #ffffff;
+$co-active-search-border: #e9e9e9;
+/* error */
+$co-error-search-bg: #ffffff;
+$co-error-search-border: #d96d5b;
+
+$search-input-width: 200px;
+$search-input-height: 28px;
+
+@mixin common-input {
+  background-color: $co-default-search-bg;
+  border: 1px solid $co-default-search-bg;
+  border-radius: $input-search-border-radius;
+  &:active,
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    outline-offset: 0;
+    background-color: $co-active-search-bg;
+    border: 1px solid $co-active-search-border;
+    outline: 0;
+    &::-webkit-input-placeholder {
+      color: $co-lighter-grey;
+    }
+  }
+  &::-webkit-input-placeholder {
+    line-height: 24px;
+    @include Second-title-backup;
+  }
+}
+@mixin lighter {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+.search-input {
+  width: $search-input-width;
+  height: $search-input-height;
+  line-height: $search-input-height;
+  .ant-input-affix-wrapper {
+    &:hover {
+      cursor: pointer;
+      .ant-input {
+        background-color: $co-active-search-bg;
+        border: 1px solid $co-active-search-border;
+        outline: 0;
+      }
+    }
+  }
+  &.with-prefixicon {
+    .ant-input {
+      padding-left: 35px !important;
+    }
+  }
+  .ant-input {
+    @include common-input;
+  }
+  &.is-error {
+    .ant-input {
+      background-color: $co-error-search-bg;
+      border: 1px solid $co-error-search-border;
+      outline: 0;
+    }
+  }
+  .teams-icon {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+  }
+
+  &.lighter-input {
+    @include lighter;
+    font-size: $second-title-fs;
+    &:focus,
+    &:active,
+    &:hover {
+      cursor: pointer;
+      @include lighter;
+    }
+    .search-input__inner.ant-input-affix-wrapper {
+      font-size: $second-title-fs;
+    }
+    .ant-input {
+      padding: 0;
+      padding-left: 1px;
+      margin-left: -1px;
+      font-size: $second-title-fs;
+      height: 28px !important;
+      @include lighter;
+
+      &:focus,
+      &:active,
+      &:hover {
+        cursor: pointer;
+        @include lighter;
+        font-size: $second-title-fs;
+        &::-webkit-input-placeholder {
+          font-size: $second-title-fs;
+          color: $co-lighter-grey;
+        }
+      }
+      &::-webkit-input-placeholder {
+        font-size: $second-title-fs;
+        line-height: 24px;
+        color: $co-lighter-grey;
+      }
+    }
+    .ant-input-suffix {
+      display: none;
+    }
+  }
+}

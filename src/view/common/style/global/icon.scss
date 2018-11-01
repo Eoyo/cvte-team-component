@@ -1,0 +1,264 @@
+.teams-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+.header_nav_item {
+  &:hover {
+    .icon-meeting {
+      @include load_active_icon(left_slider_nav/meeting);
+    }
+    .icon-contact {
+      @include load_active_icon(left_slider_nav/contact);
+    }
+
+    .icon-join-team {
+      @include load_active_icon(header_menu_nav/join-team);
+    }
+    .icon-add-contact {
+      @include load_active_icon(header_menu_nav/add-contact);
+    }
+    .icon-create-team {
+      @include load_active_icon(header_menu_nav/create-team);
+    }
+    .icon-air-cast {
+      @include load_active_icon(header_menu_nav/air-cast);
+    }
+    .icon-apply-meeting {
+      @include load_active_icon(header_menu_nav/apply-meeting);
+    }
+    .icon-instant-meeting {
+      @include load_active_icon(header_menu_nav/instant-meeting);
+    }
+  }
+}
+/* 导航 */
+
+.icon-meeting {
+  @include load_icon(left_slider_nav/meeting);
+}
+.icon-contact {
+  @include load_icon(left_slider_nav/contact);
+}
+.icon-join-team {
+  @include load_icon(header_menu_nav/join-team);
+}
+.icon-add-contact {
+  @include load_icon(header_menu_nav/add-contact);
+}
+.icon-create-team {
+  @include load_icon(header_menu_nav/create-team);
+}
+.icon-air-cast {
+  @include load_icon(header_menu_nav/air-cast);
+}
+.icon-apply-meeting {
+  @include load_icon(header_menu_nav/apply-meeting);
+}
+.icon-instant-meeting {
+  @include load_icon(header_menu_nav/instant-meeting);
+}
+
+/* 比较散的icon */
+/* 信息卡片的更多 */
+.icon-menu {
+  width: 28px;
+  height: 28px;
+  @include load_icon(left_slider_nav/menu);
+  &:hover {
+    cursor: pointer;
+    @include load_active_icon(left_slider_nav/menu);
+  }
+}
+.icon-more {
+  background-image: url(~/assets/images/icon_more.svg);
+}
+/* 编辑 */
+.icon-edit {
+  @include load_icon(info_card/edit);
+  &:hover {
+    cursor: pointer;
+    @include load_active_icon(info_card/edit);
+  }
+}
+/* 搜索 */
+.icon-search {
+  background-image: url(~/assets/images/icon_search.svg);
+}
+/* 输入框删除 */
+.icon-del {
+  @include load_icon(del);
+  :active,
+  :focus {
+    @include load_active_icon(del);
+  }
+}
+/* 团队管理的添加 */
+.group-members-addmembers-button {
+  .icon-add-members {
+    @include load_icon(group_manage/add-members);
+  }
+
+  &:hover {
+    cursor: pointer;
+    .icon-add-members {
+      @include load_active_icon(group_manage/add-members);
+    }
+  }
+}
+
+.icon-close-normal {
+  background-image: url(~/assets/images/modal_close/Normal.svg);
+}
+.icon-close-pressed {
+  background-image: url(~/assets/images/modal_close/Pressed.svg);
+}
+.icon-close {
+  background-image: url(~/assets/images/modal_close/Normal.svg);
+  &:hover,
+  &:active,
+  &:focus {
+    background-image: url(~/assets/images/modal_close/Pressed.svg);
+  }
+}
+/* 添加联系人 */
+.icon-add {
+  background-image: url(~/assets/images/icon_add/icon_add_default.svg);
+  &.disable {
+    background-image: url(~/assets/images/icon_add/icon_add_disable.svg);
+    cursor: not-allowed;
+    &:hover {
+      cursor: pointer;
+      background-image: url(~/assets/images/icon_add/icon_add_disable.svg);
+    }
+    &:active,
+    &:focus {
+      background-image: url(~/assets/images/icon_add/icon_add_disable.svg);
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    background-image: url(~/assets/images/icon_add/icon_add_hover.svg);
+  }
+  &:active,
+  &:focus {
+    background-image: url(~/assets/images/icon_add/icon_add_press.svg);
+  }
+}
+/* 提醒 黄的 warning！！！！ */
+.icon-warning {
+  background-image: url(~/assets/images/icon_warning.svg);
+}
+/* 警告 红色的 error！！！！ */
+.icon-error {
+  background-image: url(~/assets/images/icon_error.svg);
+}
+
+/* copy */
+.icon-copy {
+  @include load_icon(info_card/copy);
+  &:focus,
+  &:active,
+  &:hover {
+    cursor: pointer;
+    @include load_active_icon(info_card/copy);
+  }
+}
+/* 日历 */
+.icon-calendar {
+  @include load_icon(meeting_info/calendar);
+  &:focus,
+  &:active,
+  &:hover {
+    cursor: pointer;
+    @include load_active_icon(meeting_info/calendar);
+  }
+}
+
+.dir-btn {
+  .teams-icon {
+    width: 10px;
+    height: 10px;
+  }
+  .icon-shrink {
+    background-image: url(~/assets/images/collsape/collsape-shrink.svg) !important;
+  }
+  .icon-extend {
+    background-image: url(~/assets/images/collsape/collsape-extend.svg) !important;
+  }
+}
+/* 单选框按钮 */
+.icon-checked {
+  background-image: url(~/assets/images/icon_checked.svg) !important;
+}
+
+/* 会议提示状态栏 */
+.message-line {
+  &.primary {
+    .message-description {
+      .icon-info-status {
+        background-image: url(~/assets/images/meeting-message-line/success.svg) !important;
+      }
+    }
+  }
+  &.warn {
+    .message-description {
+      .icon-info-status {
+        background-image: url(~/assets/images/meeting-message-line/warning.svg) !important;
+      }
+    }
+  }
+  &.big-size {
+    .message-description {
+      .icon-info-status {
+        width: 24px;
+        height: 24px;
+        background-image: url(~/assets/images/toast/warning.svg) !important;
+      }
+    }
+  }
+}
+
+/* 侧边栏工具 */
+.icon-file {
+  @include load_icon(slide_tag/file);
+}
+.icon-history {
+  @include load_icon(slide_tag/history);
+}
+.icon-summary {
+  @include load_icon(slide_tag/summary);
+}
+.icon-note {
+  @include load_icon(slide_tag/note);
+}
+.icon-detail {
+  @include load_icon(slide_tag/detail);
+}
+.icon-record {
+  @include load_icon(slide_tag/record);
+}
+.selected {
+  .icon-file {
+    @include load_active_icon(slide_tag/file);
+  }
+  .icon-history {
+    @include load_active_icon(slide_tag/history);
+  }
+  .icon-summary {
+    @include load_active_icon(slide_tag/summary);
+  }
+  .icon-note {
+    @include load_active_icon(slide_tag/note);
+  }
+  .icon-detail {
+    @include load_active_icon(slide_tag/detail);
+  }
+  .icon-record {
+    @include load_active_icon(slide_tag/record);
+  }
+}

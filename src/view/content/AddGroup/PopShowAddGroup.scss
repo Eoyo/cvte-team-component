@@ -1,0 +1,92 @@
+.add-group-wrapper {
+  width: 480px !important;
+  height: 520px !important;
+  box-sizing: border-box;
+  .add-group-grid {
+    display: flex;
+    height: 100%;
+    width: 240px;
+    flex-direction: column;
+    padding: 30px 20px 20px;
+    box-sizing: border-box;
+    .view-content {
+      width: 100%;
+      height: calc(100% - 28px);
+      overflow: hidden;
+      &:hover {
+        cursor: pointer;
+        &::-webkit-scrollbar-thumb {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+  .view-member-selected {
+    background-color: $co-bg;
+    width: 240px;
+  }
+  .view-member-selectd-top {
+    padding-bottom: 10px;
+  }
+  .member-list-one-person {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+    &.person-selected {
+      padding-right: 0;
+    }
+    .person-body {
+      flex: 1;
+      padding: 0 10px;
+      overflow: hidden;
+      .person-name {
+        width: 7em;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-clamp: 1;
+        -webkit-line-clamp: 1;
+      }
+    }
+  }
+  .member-symbol-group-title {
+    border-bottom: 1px solid $co-bg-darker;
+    line-height: 38px;
+    height: 38px;
+    text-align: left;
+  }
+}
+.persion-selector-icon {
+  border: 1px solid #9a9a9a;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background-color: $co-bg-default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &.exited {
+    border: none;
+    cursor: not-allowed;
+    .icon-checked {
+      background-image: url(~/assets/images/icon_has_checked.svg) !important;
+    }
+  }
+  .teams-icon {
+    width: 16px;
+    height: 16px;
+  }
+  &.static {
+    .icon-checked {
+      display: none;
+    }
+  }
+  &.selected {
+    border: none;
+  }
+}

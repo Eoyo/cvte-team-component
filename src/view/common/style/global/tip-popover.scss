@@ -1,0 +1,16 @@
+.tip-popover {
+  z-index: 1052;
+  .ant-popover-content {
+    @include tip-popover-back;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+  }
+  .ant-popover-arrow,
+  .ant-popover-inner {
+    @include tip-popover-back;
+  }
+  .tip-popover-text {
+    font-size: $second-title-fs;
+    color: #ffffff;
+  }
+}

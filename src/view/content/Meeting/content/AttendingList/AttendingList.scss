@@ -1,0 +1,76 @@
+$member-grid-height: 40px;
+$mingridHeight: 114px;
+$maxgridHeight: 228px;
+.attending-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  margin-bottom: -10px;
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+  /*min-height: $mingridHeight;
+  max-height: $maxgridHeight;*/
+  .attending-person {
+    width: 145px;
+    height: $member-grid-height;
+    overflow: hidden;
+    display: flex;
+    float: left;
+    font-size: 14px;
+    margin-bottom: 10px;
+    .icon-error {
+      background-color: $co-bg-default !important;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      cursor: pointer;
+    }
+  }
+  .attending-person-right-side-text {
+    overflow: hidden;
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 10px;
+    height: 40px;
+    flex: 1;
+    width: 7em;
+    .attending-person-name {
+      width: 7em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-clamp: 1;
+      -webkit-line-clamp: 1;
+      white-space: nowrap;
+      margin: 0;
+    }
+    .attending-person-status-info {
+      .attending-person-status-text {
+        margin: 0;
+        text-align: left;
+      }
+      .attending-reject {
+        color: $co-reject;
+        font-size: 12px;
+      }
+      .attending-master,
+      .attending-accept {
+        @include Second-title-backup;
+      }
+      .attending-wait {
+        @include Second-title-highlight;
+      }
+    }
+  }
+}

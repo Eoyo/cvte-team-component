@@ -1,0 +1,91 @@
+.contactlist-wrap {
+  background-color: $co-bg-default !important;
+}
+
+.contactlist-contacts {
+  padding-left: 0px !important;
+  background-color: $co-bg-default;
+  margin: 0 !important;
+}
+
+.contactlist-show {
+  display: block;
+}
+
+.contactlist-hide {
+  display: none;
+}
+
+.contactlist-top-font {
+  @include Main-highlight;
+  font-weight: 400;
+}
+.menu-list-title {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.contactlist-top-num {
+  @include Second-title-backup;
+}
+
+.contactlist-per-info {
+  padding-left: 0px !important;
+  margin: 0 !important;
+}
+
+.contactlist-empty-li {
+  display: flex;
+  justify-content: flex-start;
+  justify-items: center;
+  color: #aeaeaf;
+  padding-left: 0px !important;
+  margin: 0 !important;
+}
+.contactitem-name-font {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @include Main;
+}
+
+.contactitem-item {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  .contactitem-name-font {
+    margin: 0 10px;
+  }
+}
+
+/* 主功能区布局 */
+.contact-page {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  background-color: $co-bg-default;
+}
+.contact-list-scroll {
+  > .scroll-content {
+    width: $list-width;
+  }
+}
+.contact-list-section {
+  width: $list-width;
+  z-index: -1;
+  .menu-list-wrapper {
+    width: 100%;
+    background: white;
+  }
+  .ant-menu-inline {
+    .ant-menu-submenu-title {
+      padding-right: 30px;
+    }
+  }
+}
+
+.contacts-menu-wrapper {
+  .ant-dropdown-menu {
+    padding: 0;
+  }
+}
