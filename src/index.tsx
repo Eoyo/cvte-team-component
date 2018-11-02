@@ -1,4 +1,3 @@
-import { TimePickerPopCard } from "./view/content/Meeting/content/MeetingDetail/MeetingMessageEditGroup/TimePickerGroup/TimePickerPopCard";
 import * as React from "react";
 import { render } from "react-dom";
 // 返回操作函数
@@ -12,18 +11,18 @@ export function TimePicker3Render(ele) {
       ele
     );
   }
-  function checkProps(p) {
+  function checkProps(p: any) {
     if (p && memeryProps) {
       memeryProps = Object.assign(memeryProps, p);
     } else {
       memeryProps = p;
     }
   }
-  return function(p) {
+  return function(p: TimePickerPopCardProps) {
     checkProps(p);
     Render();
     // 返回局部更新函数
-    return function(p) {
+    return function(p: Partial<TimePickerPopCardProps>) {
       checkProps(p);
       Render();
     };

@@ -4,11 +4,10 @@
     "sourceMap": true,
     "target": "es5",
     "lib": ["dom", "es7"],
-    "module": "esnext",
+    "module": "es6",
     "moduleResolution": "node",
     "declaration": true,
     "jsx": "react",
-    "baseUrl": "./",
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true
   },
