@@ -1,5 +1,6 @@
 import * as React from "react";
 import { render } from "react-dom";
+import { TimePickerPopCard, TimePickerPopCardProps } from "./view/content/TimePickerGroup/TimePickerPopCard";
 // 返回操作函数
 export function TimePicker3Render(ele) {
   var memeryProps;

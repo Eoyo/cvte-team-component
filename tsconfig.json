@@ -11,5 +11,5 @@
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["./src/index.tsx"]
+  "include": ["./src/**/*"]
 }
