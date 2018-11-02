@@ -64,6 +64,7 @@ export const C_MeetingThemeInput = MeetingConnect(s => {
   >
     主题
     <Ele.input
+      spellCheck={false}
       onChange={ev => {
         p.onInputTheme(ev.currentTarget.value);
       }}

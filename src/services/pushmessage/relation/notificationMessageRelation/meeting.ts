@@ -2,13 +2,13 @@
  * @file 会议部分的更改   
  * @Date: 2018-09-09 21:24:39 
  * @Last Modified by: xutao@cvte.com
- * @Last Modified time: 2018-10-30 17:42:06
+ * @Last Modified time: 2018-11-01 17:54:29
  */
 
 import { S } from "../../../../stores";
 
 // 会议 model reducer key
-import { MEETING_SUMMARIES_PUBLISH } from "../../../../localDB/actions/meeting";
+// import { MEETING_SUMMARIES_PUBLISH } from "../../../../localDB/actions/meeting";
 
 import { TypePushNotificationMessageBody } from "../../pushMessageType";
 import { pushserviceSystem } from "../../contants";
@@ -20,6 +20,14 @@ export type TypeMeetingInviteMessageBodyData = {
   meetingId: string;
 };
 export type TypeMeetingSummaryPublishBodyData = {
+  meetingId: string;
+};
+// 会议结束提醒
+export type TypeMeetingFinishBodyData = {
+  meetingId: string;
+};
+// 取消
+export type TypeMeetingCancelBodyData = {
   meetingId: string;
 };
 
@@ -49,7 +57,10 @@ export const meetinginvite = {
       setTimeout(() => {
         S.Meeting.acceptMeeting({ meetingId });
       });
-      // S.Meeting.focusOneMeeting({ aimId: meetingId });
+      // hardcode 就这样吧 = =
+      setTimeout(() => {
+        S.Meeting.focusOneMeeting({ aimId: meetingId });
+      }, 500);
     } else {
       S.Meeting.rejectMeeting({ meetingId });
     }
@@ -59,7 +70,7 @@ export const meetinginvite = {
 };
 export const meetingSummaryPunblish = {
   messageRouteKey: pushserviceSystem.PUSH__MEETING_SUMMARIES__PUBLISH,
-  reducerActionKey: MEETING_SUMMARIES_PUBLISH,
+  reducerActionKey: "",
   actorTrigger: (
     data: TypePushNotificationMessageBody<TypeMeetingSummaryPublishBodyData>
   ) => {
@@ -74,7 +85,55 @@ export const meetingSummaryPunblish = {
         S.Meeting.onSummaryPublish({
           meetingId: meetingId,
         });
+        // 强制刷新列表
+        S.Meeting.fetchMeetingList({});
       });
     }
+  },
+};
+
+export const meetingFinishNotify = {
+  messageRouteKey: pushserviceSystem.PUSH__MEETING__FINISH,
+  reducerActionKey: "",
+  actorTrigger: (
+    data: TypePushNotificationMessageBody<TypeMeetingFinishBodyData>
+  ) => {
+    console.log(data, "会议结束提醒");
+    const {
+      action,
+      extras: { meetingId },
+    } = data;
+    if (action) {
+      window.location.hash = "meeting";
+      setTimeout(() => {
+        S.Meeting.stopMeeting({
+          meetingId,
+        });
+        // 强制刷新列表
+        S.Meeting.fetchMeetingList({});
+      });
+    }
+  },
+};
+
+export const meetingCancel = {
+  messageRouteKey: pushserviceSystem.PUSH__MEETING__CANCEL,
+  reducerActionKey: "",
+  actorTrigger: (
+    data: TypePushNotificationMessageBody<TypeMeetingFinishBodyData>
+  ) => {
+    console.log(data, "会议取消提醒");
+    const {
+      action,
+      extras: { meetingId },
+    } = data;
+    // window.location.hash = "meeting";
+    // setTimeout(() => {
+    // S.Meeting.stopMeeting({
+    //   meetingId,
+    // });
+    // 强制刷新列表
+    S.Meeting.fetchMeetingList({});
+    // });
   },
 };

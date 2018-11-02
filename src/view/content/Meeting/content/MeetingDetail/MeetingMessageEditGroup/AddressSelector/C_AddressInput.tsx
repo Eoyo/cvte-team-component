@@ -43,6 +43,7 @@ class AddressInput extends React.Component<{
     const p = this.props;
     return (
       <Ele.input
+        spellCheck={false}
         onClick={ev => {
           this.selectAll();
         }}

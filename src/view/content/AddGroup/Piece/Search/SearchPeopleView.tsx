@@ -206,7 +206,7 @@ export class SearchPeople extends Component<
                 }
                 this.checkKeyword(ev.target.value);
               }}
-              onKeyUp={(ev: any) => {
+              onKeyDown={(ev: any) => {
                 if (ev.keyCode === 13) {
                   this._searchByKeyWord();
                 }

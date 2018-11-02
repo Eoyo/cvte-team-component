@@ -4,8 +4,7 @@ import "moment/locale/zh-cn";
 import locale from "rc-calendar/lib/locale/en_US";
 moment.locale("zh-cn");
 import Calender from "rc-calendar";
-import "./DateCalenderPicker.scss";
-import { timeValue } from "src/utils/String/timeTick/Tick";
+import { DateCalenderWrapper } from "./DateCalenderPickerStyled";
 
 export type DateCalenderPickerProps = {
   onChange(cur: moment.Moment): void;
@@ -16,6 +15,15 @@ export type DateCalenderPickerProps = {
 export class DateCalenderPicker extends React.Component<
   DateCalenderPickerProps
 > {
+  state = {
+    value: this.props.value,
+  };
+  componentDidMount() {
+    this.setState({ value: this.props.value });
+  }
+  componentWillReceiveProps(nextPorps) {
+    this.setState({ value: nextPorps.value });
+  }
   getDayStart(mom: moment.Moment) {
     return moment(
       mom.format("YYYY-MM-DD") + "/00:00",
@@ -41,25 +49,54 @@ export class DateCalenderPicker extends React.Component<
       } else {
         rus = cur.valueOf() <= this.disableNow;
       }
-      // if (rus) {
-      //   console.log(rus, cur.format("DD"));
-      // } else {
-      //   console.log(cur.format("DD"), rus);
-      // }
-
-      // if (cur.format("DD") === "21") {
-      //   console.log(
-      //     cur.format("YYYY-MM-DD/HH:mm"),
-      //     moment(this.disableNow).format("YYYY-MM-DD/HH:mm")
-      //   );
-      // }
       return rus;
     } else {
       return true;
     }
   };
+  onSelect = (cur: any) => {
+    let flag = false;
+    if (this.props.endTime && this.props.startTime) {
+      flag =
+        cur.valueOf() >= this.props.startTime &&
+        cur.valueOf() <= this.props.endTime;
+    } else if (this.props.endTime) {
+      flag =
+        cur.valueOf() >= this.disableNow && cur.valueOf() <= this.props.endTime;
+    } else if (this.props.startTime) {
+      flag = cur.valueOf() >= this.props.startTime;
+    } else {
+      flag = cur.valueOf() >= this.disableNow;
+    }
+    if (flag) {
+      this.props.onChange(cur);
+    }
+  };
   onChange = (cur: moment.Moment) => {
-    this.props.onChange(cur);
+    let time = moment(0);
+    let startTime = moment(this.props.startTime || this.disableNow);
+    let endTime = undefined as any;
+    let disableEndMonthTime = undefined as any;
+    if (this.props.endTime) {
+      endTime = moment(this.props.endTime).add(1, "months");
+      disableEndMonthTime = moment(
+        endTime.format("YYYY-M") + "-" + time.format("D/HH:mm")
+      ).valueOf();
+    }
+    let disableStartMonthTime = moment(
+      startTime.format("YYYY-M") + "-" + time.format("D/HH:mm"),
+      "YYYY-M-D/HH:mm"
+    ).valueOf();
+    let flag = true;
+    if (disableEndMonthTime && disableEndMonthTime < cur.valueOf()) {
+      flag = false;
+    }
+    if (disableStartMonthTime > cur.valueOf()) {
+      flag = false;
+    }
+    if (flag === true) {
+      this.setState({ value: cur });
+    }
   };
   getDay(cur: moment.Moment) {
     let mnow = moment(Date.now()).format("YYYY-MM-DD");
@@ -88,8 +125,9 @@ export class DateCalenderPicker extends React.Component<
     );
   };
   render() {
+    const { value } = this.state;
     return (
-      <div className="date-picker-from-antd">
+      <DateCalenderWrapper>
         <Calender
           prefixCls="ant-calendar"
           disabledDate={this.disableDate}
@@ -99,10 +137,11 @@ export class DateCalenderPicker extends React.Component<
           // @ts-ignore
           format={"YYYY-MM-DD"}
           locale={locale}
+          onSelect={this.onSelect}
           onChange={this.onChange}
-          value={this.props.value}
+          value={value}
         />
-      </div>
+      </DateCalenderWrapper>
     );
   }
 }

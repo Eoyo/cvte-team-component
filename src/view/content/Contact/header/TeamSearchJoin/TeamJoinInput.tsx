@@ -26,7 +26,7 @@ export const C_TeamJoinSearchInput = Fusion(S.TeamSearchJoin.getStore())<
     searchkeyWord: () => {
       join.searchkeyWord({});
     },
-    onKeyUp: (ev: any): void => {
+    onKeyDown: (ev: any): void => {
       if (ev.keyCode === 13) {
         join.searchkeyWord({});
       }

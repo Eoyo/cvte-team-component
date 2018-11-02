@@ -58,10 +58,10 @@
   }
   &:active {
     .icon-address {
-      @include load_active_icon(choose_address);
+      @include load_active_icon(address);
     }
-    background-color: #343434 !important;
-    color: #ffffff !important;
+    background-color: #f4f4f4 !important;
+    color: #343434 !important;
   }
 }
 

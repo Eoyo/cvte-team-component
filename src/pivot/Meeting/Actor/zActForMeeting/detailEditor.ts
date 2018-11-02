@@ -10,7 +10,7 @@ export const detailEditor = Act<MeetingTypes.InitState>()({
   setDetailStatus: {
     status: "notEditable" as cardStatus,
   },
-  resetMessage: {},
+  modifyDetail: {},
   cancelModifyDetail: {},
 })({
   cancelModifyDetail: (s, a) => {
@@ -44,7 +44,7 @@ export const detailEditor = Act<MeetingTypes.InitState>()({
       })(),
     };
   },
-  resetMessage: function*(s, a) {
+  modifyDetail: function*(s, a) {
     //判断是否有改变，如果有，再进行后面的操作
     let change = changeInfo(s);
     if (!change) {
@@ -151,6 +151,18 @@ function changeInfo(s: MeetingTypes.InitState) {
   } else if (s.meetingData.body.content !== s.editingDetail.content) {
     change = true;
   } else if (s.meetingData.body.subject !== s.editingDetail.subject) {
+    change = true;
+  } else if (
+    s.meetingData.body.repeatEndTime !== s.editingDetail.repeatEndTime
+  ) {
+    change = true;
+  } else if (
+    s.meetingData.body.repeatStartTime !== s.editingDetail.repeatStartTime
+  ) {
+    change = true;
+  } else if (s.meetingData.body.repeatType !== s.editingDetail.repeatType) {
+    change = true;
+  } else if (s.meetingData.body.repeatValue !== s.editingDetail.repeatValue) {
     change = true;
   }
   return change;

@@ -8,6 +8,7 @@ import {
   RLi,
 } from "../../../../../common/component/RightClickMenu/RightClikMenuStyled";
 import { Meeting } from "../../../../../../pivot/Meeting/Actor/MeetingActor";
+import { fridayPushData } from "src/friday";
 
 // 使用参数透传, MeetingListCard的组件共用同一个参数
 export type ClickShowerProps = MeetingListCardProps;
@@ -128,6 +129,14 @@ const handleAttendee = (p: ClickShowerProps) => {
                   title: "",
                   onConfirm: () => {},
                   onCancel: () => {},
+                });
+                // 点击退出会议按钮
+                fridayPushData({
+                  event: "click",
+                  attr: {
+                    meetingId: p.meetingId,
+                  },
+                  eventName: "QUIT_MEETING_BUTTON_CLICK",
                 });
               },
               onCancel: () => {

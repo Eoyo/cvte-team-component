@@ -2,7 +2,7 @@
  * @file 团队部分的更改
  * @Date: 2018-09-09 21:53:58 
  * @Last Modified by: xutao@cvte.com
- * @Last Modified time: 2018-10-30 17:41:36
+ * @Last Modified time: 2018-10-31 20:57:04
  */
 // 返回值body 类型
 import { TypePushNotificationMessageBody } from "../../pushMessageType";
@@ -16,6 +16,7 @@ import { TypePushNotificationMessageBody } from "../../pushMessageType";
 import { pushserviceSystem } from "../../contants";
 // user 模型
 import { showTeamInfo } from "../../../../view/content/Contact/utils";
+import { utilsLog } from "src/services/native";
 /* ==================== body type ==================== */
 // 推送-团队邀请通知
 export type TypeTeamsInviteMessageBodyData = {
@@ -33,7 +34,7 @@ export const teamsinvitepush = {
   ) => {
     // data.action true 查看 false关闭
     // data.extras.teamId
-    console.log("团队邀请推送通知回调", data);
+    utilsLog({ msg: "团队邀请推送通知回调" + JSON.stringify(data) });
     const {
       action,
       extras: { teamId },

@@ -15,7 +15,7 @@ export const invite = Act<MeetingTypes.InitState>()({
   acceptMeeting: function*(s, a) {
     const meetingId = a.meetingId || s.aimAtMeetingId;
     message.destroy();
-    message.info("已经发送加入请求");
+    message.info("已经发送加入请求, 请稍候");
 
     const res = yield auto.confirmIniviting(
       {
@@ -65,7 +65,7 @@ export const invite = Act<MeetingTypes.InitState>()({
       let aimMeetingId = a.meetingId || s.meetingData.meetingId;
 
       message.destroy();
-      message.info("已经发出了拒绝请求");
+      // message.info("已经发出了拒绝请求");
       const res: confirmInivitingTypes.checked = yield auto.confirmIniviting(
         {
           meetingId: aimMeetingId,
@@ -92,7 +92,7 @@ export const invite = Act<MeetingTypes.InitState>()({
       const rejectMeetingId = "" + a.meetingId;
       const oneSnapShot = findSnapshot(s.meetingSnapshot, "" + rejectMeetingId);
       message.destroy();
-      message.info("已经发出了拒绝请求");
+      // message.info("已经发出了拒绝请求");
       const res: confirmInivitingTypes.checked = yield auto.confirmIniviting(
         {
           meetingId: rejectMeetingId,

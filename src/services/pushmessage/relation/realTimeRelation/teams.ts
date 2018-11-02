@@ -2,7 +2,7 @@
  * @file 团队部分的更改
  * @Date: 2018-09-09 21:53:58 
  * @Last Modified by: xutao@cvte.com
- * @Last Modified time: 2018-10-30 17:22:41
+ * @Last Modified time: 2018-11-01 16:34:41
  */
 // 返回值body 类型
 import { TypeMessageBody } from "../../pushMessageType";
@@ -74,6 +74,7 @@ export const OtherJoinTeams = {
   reducerActionKey: OTHER_JOIN_TEAM,
   actorTrigger: (data: TypeMessageBody<TypeOtherJoinTeamsMessageBodyData>) => {
     console.log(data, "他人加入团队");
+    // window 有bug
     const { _id: combieIdWithMeetingAndUser, user } = data.data;
     const [teamID, userID] = combieIdWithMeetingAndUser.split("-");
     //todo(ezleo):目前user的name是未知的

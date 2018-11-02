@@ -5,6 +5,7 @@ import { auto } from "../../../../services/auto/spore";
 import { Meeting } from "../MeetingActor";
 import { Act } from "../../../../stores/Actor/actor";
 import { resOK } from "../../../../utils/DataControl/ApiHelper";
+import { fridayPushData } from "src/friday";
 
 // 防止重复停止同一个会议
 let stoping = "";
@@ -32,5 +33,11 @@ export const inMeeting = Act<MeetingTypes.InitState>()({
     }
     resLog(res);
     Meeting.fetchAimMeeting({ aimId: meetingId });
+    // 结束会议（点击结束会议按钮
+    fridayPushData({
+      event: "click",
+      attr: { meetingId: meetingId },
+      eventName: "FINISH_MEETING_BUTTON_CLICK",
+    });
   },
 });

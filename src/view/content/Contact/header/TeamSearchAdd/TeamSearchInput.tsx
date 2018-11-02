@@ -45,7 +45,7 @@ export const TeamSearchInput: React.SFC<TeamSearchInputProps> = p => {
           maxLength={30}
           searchkeyWord={p.onCreateTeam}
           keyword={p.keyword}
-          onKeyUp={p.onKeyUp}
+          onKeyDown={p.onKeyUp}
           onChange={p.onChange}
           prefixIcon={""}
           focus={true}

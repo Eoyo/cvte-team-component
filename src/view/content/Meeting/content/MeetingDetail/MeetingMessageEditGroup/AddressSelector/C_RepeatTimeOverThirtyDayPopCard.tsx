@@ -6,10 +6,13 @@ import {
 import { PopCard } from "../../../../../../common/component/Pop/PopCard";
 import { Ele } from "../../../../../../common/ts-styled/ele";
 import "./C_RepeatTimeOverThirtyDayPopCard.scss";
+import * as moment from "moment";
 
 export const C_RepeatTimeOverThirtyDayPopCard = MeetingConnect(s => {
   return {
     show: s.showRepeatTimeOverThirtyDayPopCard,
+    updateStartTime: s.updateInfo && s.updateInfo.updateStartTime,
+    updateEndTime: s.updateInfo && s.updateInfo.updateEndTime,
   };
 })(p => {
   return (
@@ -35,17 +38,31 @@ export const C_RepeatTimeOverThirtyDayPopCard = MeetingConnect(s => {
         <Ele.secondBtn
           type={"primary"}
           onClick={() => {
-            const { updateInfo } = Meeting.grab();
-            let startTime = 0;
-            if (updateInfo && updateInfo.updateStartTime) {
-              startTime = updateInfo.updateStartTime.valueOf();
+            let startTime = Date.now();
+            if (p.updateStartTime) {
+              startTime = p.updateStartTime;
+            }
+            let endTime = Date.now();
+            if (p.updateEndTime) {
+              endTime = p.updateEndTime;
             }
             Meeting.setRepeatEndTime({ repeatEndTime: undefined });
-            Meeting.setRepeatStartTime({
-              startTime: startTime,
+            Meeting.setMeetingBaseMessage({
+              date: {
+                day: moment(startTime),
+                startTime: moment(startTime),
+                endTime: moment(endTime),
+              },
             });
-            Meeting.setRepeatSelector({ show: true });
-            Meeting.setRepeatTimeOverThirtyDayPopCard({ show: false });
+            //因为setMeetingBaseMessage是generator函数，会在下面几个函数之后才触发，所以设置
+            //间隔时间，保证触发顺序，不然会有bug
+            setTimeout(() => {
+              Meeting.setRepeatStartTime({
+                startTime: startTime,
+              });
+              Meeting.setRepeatTimeOverThirtyDayPopCard({ show: false });
+              Meeting.setRepeatSelector({ show: true });
+            }, 100);
           }}
         >
           是

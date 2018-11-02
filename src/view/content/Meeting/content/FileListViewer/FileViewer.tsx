@@ -180,6 +180,8 @@ export const C_FileViewerCard = MeetingConnect(s => {
             .catch((e: any) => {
               nativeLogMessage(e);
               utilsLog({ msg: "open url failed\n" });
+              console.log("in browser");
+              window.open(onep.downloadUrl);
               //下载失败
             });
         },
@@ -218,6 +220,8 @@ export const C_FileViewerCard = MeetingConnect(s => {
             })
             .catch((e: any) => {
               utilsLog({ msg: "open url failed\n" });
+              console.log("in browser");
+              window.open(onep.downloadUrl);
               //下载失败
             });
         },

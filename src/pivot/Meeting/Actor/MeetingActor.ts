@@ -19,6 +19,7 @@ import * as moment from "moment";
 import { message } from "antd";
 import { Actor } from "../../../stores/Actor/actor";
 import { Fusion } from "../../../stores/Actor/fusion";
+import { fridayPushData } from "src/friday";
 
 export const Meeting = Actor(MeetingTypes.createInitState())({
   ...schedule.actions,
@@ -151,6 +152,15 @@ export const Meeting = Actor(MeetingTypes.createInitState())({
     }
   },
   setSendSummaryPopState: function*(s, a) {
+    // 发送纪要
+    fridayPushData({
+      event: "click",
+      eventName: "SEND_MEETING_SUMMARY_BUTTON_CLICK",
+      attr: {
+        meetingId: s.aimAtMeetingId,
+      },
+    });
+
     yield {
       showSendSummaryPopCard: a.show,
     };
@@ -159,6 +169,14 @@ export const Meeting = Actor(MeetingTypes.createInitState())({
     return { meetingData: { status: a.status } };
   },
   focusOneMeeting: function*(s, a) {
+    // 查看会议详情
+    fridayPushData({
+      event: "click",
+      eventName: "CHECK_MEETING_DETAIL",
+      attr: {
+        meetingId: a.aimId,
+      },
+    });
     yield {
       sign: ["readSnapshot"],
       aimAtMeetingId: a.aimId,

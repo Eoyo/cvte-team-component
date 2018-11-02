@@ -16,7 +16,15 @@ import styled from "../../../../../../../../node_modules/styled-components";
 const CheckboxGroup = Checkbox.Group;
 
 const S_CheckboxGroup = styled(CheckboxGroup)`
-  && .ant-checkbox-group-item {
+  && .ant-checkbox-wrapper {
+    &:hover,
+    &:focus {
+      .ant-checkbox-inner {
+        border-color: #3ac3c8 !important;
+      }
+    }
+  }
+  .ant-checkbox-group-item {
     margin-right: 10px;
     > span {
       padding-left: 5px;
@@ -39,6 +47,12 @@ const S_CheckboxGroup = styled(CheckboxGroup)`
         width: 16px;
       }
       padding-left: 0px;
+      &:hover,
+      &:focus {
+        .ant-checkbox-inner {
+          border-color: #3ac3c8 !important;
+        }
+      }
     }
   }
 `;
@@ -53,18 +67,33 @@ export const C_RepeatChoosePop = MeetingConnect(s => {
     "星期六",
     "星期日",
   ];
+  const thirtyDay = 30 * 24 * 60 * 60 * 1000;
+  let repeatStartTime = s.editingDetail.repeatStartTime || 0;
+  let repeatEndTime = s.editingDetail.repeatEndTime || 0;
+  let shouldSetRepeatTime = false;
+  //重复会议开始时间和结束时间超过30天，或者开始时间大于结束时间
+  if (s.editingDetail.repeatType !== undefined) {
+    let overThirtyDay =
+      repeatEndTime - repeatStartTime > thirtyDay ? true : false;
+    let beginOverEnd = repeatStartTime - repeatEndTime > 0 ? true : false;
+    if (overThirtyDay || beginOverEnd) {
+      shouldSetRepeatTime = true;
+    }
+  }
   return {
     show: s.showRepeatTimeSelectorPopCard,
     options: options,
     repeatEndTime: s.updateInfo && s.updateInfo.updateRepeatEndTime,
     repeatType: s.editingDetail.repeatType,
     repeatValue: s.editingDetail.repeatValue,
+    shouldSetRepeatTime: shouldSetRepeatTime,
   };
 })(p => <RepeatChoosePop {...p} />);
 
 type RepeatChoosePopProps = {
   show: boolean;
   options: string[];
+  shouldSetRepeatTime: boolean;
   repeatEndTime?: number;
   repeatType?: 0 | 1;
   repeatValue?: string;
@@ -76,7 +105,6 @@ class RepeatChoosePop extends React.Component<RepeatChoosePopProps> {
     chooseValue: [],
     showSwitch: true,
     showDay: false,
-    showDaySelector: false,
   };
   componentDidMount() {
     this.setState({
@@ -147,20 +175,13 @@ class RepeatChoosePop extends React.Component<RepeatChoosePopProps> {
   }
   pickDay = (cur: moment.Moment) => {
     this.setState({
-      showDaySelector: false,
       showDay: true,
       day: cur.clone(),
     });
   };
   render() {
-    const { show, options } = this.props;
-    const {
-      day,
-      chooseValue,
-      showSwitch,
-      showDay,
-      showDaySelector,
-    } = this.state;
+    const { show, options, shouldSetRepeatTime } = this.props;
+    const { day, chooseValue, showSwitch, showDay } = this.state;
     let btnDisable = true;
     const {
       editingDetail: { repeatStartTime, beginTime },
@@ -170,7 +191,7 @@ class RepeatChoosePop extends React.Component<RepeatChoosePopProps> {
     if (repeatStartTime) {
       endTime = repeatStartTime + thirtyDays;
     }
-    if (chooseValue.length > 0 && showDay === true) {
+    if ((chooseValue.length > 0 && showDay === true) || showSwitch === false) {
       btnDisable = false;
     }
     let content = null as any;
@@ -182,22 +203,23 @@ class RepeatChoosePop extends React.Component<RepeatChoosePopProps> {
             <S_CheckboxGroup
               className="repeat-time-selector-checkbox-group"
               options={options}
-              defaultValue={chooseValue}
+              value={chooseValue}
               onChange={ev => {
                 this.setState({ chooseValue: ev });
               }}
             />
-            <div className="repeat-time-selector-date-wrapper">
-              <span className="repeat-time-selector-date-title">截止重复</span>
+            <div
+              className={
+                "repeat-time-selector-date-wrapper" +
+                (showDay
+                  ? " repeat-time-selector-normal"
+                  : " repeat-time-selector-error")
+              }
+            >
+              <span className="repeat-time-selector-date-title">重复截止</span>
               <Popover
                 trigger="click"
                 placement="bottom"
-                visible={this.state.showDaySelector}
-                onVisibleChange={ev => {
-                  this.setState({
-                    showDaySelector: ev,
-                  });
-                }}
                 overlayClassName="repeat-time-select-date-picker-wrapper"
                 content={
                   <DateCalenderPicker
@@ -213,9 +235,14 @@ class RepeatChoosePop extends React.Component<RepeatChoosePopProps> {
                   placeholder="请选择日期"
                   className="repeat-time-selector-date-picker"
                 />
+                <i className="teams-icon icon-calendar repeat-time-select-date-picker-icon" />
               </Popover>
-              <i className="teams-icon icon-calendar repeat-time-select-date-picker-icon" />
             </div>
+            {showDay ? null : (
+              <div className="repeat-time-selector-no-day-tips">
+                请选择结束日期
+              </div>
+            )}
           </div>
         </>
       );
@@ -225,14 +252,16 @@ class RepeatChoosePop extends React.Component<RepeatChoosePopProps> {
         visible={show}
         popContentClassName={"repeat-time-selector-wrapper"}
         onClickBg={() => {
-          Meeting.setRepeatSelector({ show: false });
+          if (!shouldSetRepeatTime) {
+            Meeting.setRepeatSelector({ show: false });
+          }
         }}
       >
         <div className="repeat-time-selector-title">
-          <div className="repeat-time-selector-title-content">重复会议</div>
+          <div className="repeat-time-selector-title-content">重复预约</div>
           <Switch
             className="repeat-time-selector-title-switch"
-            defaultChecked={showSwitch}
+            checked={showSwitch}
             onChange={ev => {
               this.setState({
                 showSwitch: ev,
@@ -243,14 +272,16 @@ class RepeatChoosePop extends React.Component<RepeatChoosePopProps> {
         {content}
         <HrLine />
         <div className="repeat-time-selector-btns-group">
-          <Ele.secondBtn
-            className="repeat-time-selector-btn"
-            onClick={() => {
-              Meeting.setRepeatSelector({ show: false });
-            }}
-          >
-            取消
-          </Ele.secondBtn>
+          {shouldSetRepeatTime ? null : (
+            <Ele.secondBtn
+              className="repeat-time-selector-btn"
+              onClick={() => {
+                Meeting.setRepeatSelector({ show: false });
+              }}
+            >
+              取消
+            </Ele.secondBtn>
+          )}
           <Ele.secondBtn
             className="repeat-time-selector-btn"
             type={"primary"}

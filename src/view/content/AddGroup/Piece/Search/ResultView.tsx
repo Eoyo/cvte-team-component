@@ -13,7 +13,7 @@ import {
   Avatar,
 } from "../../../../common/component/Avatar/Avatar";
 import { ExtraErrorText } from "../../../common/ExtraErrorText/ExtraErrorText";
-
+import { message } from "antd";
 import {
   TypeAddContactRes,
   TypeSearchResultItem,
@@ -246,6 +246,8 @@ export class SearchResultViewV2 extends Component<
         }
       );
     } else {
+      message.destroy();
+      message.warning("网络异常");
       await this.setState({});
     }
   }

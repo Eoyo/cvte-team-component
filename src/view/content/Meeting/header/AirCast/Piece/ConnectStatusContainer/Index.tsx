@@ -5,7 +5,7 @@
  * @Last Modified time: 2018-08-25 10:07:09
  */
 import * as React from "react";
-import { connectStatus as connectStatusMAP } from "../../Types/ConnectStatusTypes";
+import { ConnectStatus } from "../../Types/ConnectStatusTypes";
 import {
   airDisConnect,
   airStopCast,
@@ -17,7 +17,14 @@ import { Ele } from "../../../../../../common/ts-styled/ele";
 //loading有两种状态，一个是连接时的loading（输入连接码后的状态），另一个是开启时的loading（点击单屏/多屏后的状态）
 // "connectLoading" | "startLoading" | "connected" | "error";
 
-const connectMap = {
+const connectMap: {
+  [x in ConnectStatus]: {
+    icon: string;
+    text: string;
+    isDisconnectShow: false;
+    subText?: string;
+  }
+} = {
   connectLoading: {
     icon: "./assets/images/air_cast/loading.png",
     text: "正在配置网络设置",
@@ -85,15 +92,15 @@ const ConnectStatus2Views = (status: string) => {
 export const ConnectStatusContainer = ({
   connectStatus,
 }: {
-  connectStatus: string;
+  connectStatus: ConnectStatus;
 }) => {
-  const cancelHandler = (status: string) => {
+  const cancelHandler = (status: ConnectStatus) => {
     // 连接状态loading 状态未连接直接返回输入，保留记录
-    if (status === connectStatusMAP.CONNECT_LOADING) {
+    if (status === ConnectStatus.connect_loading) {
       S.AirCastActor.airCastBack({});
-    } else if (status === connectStatusMAP.START_LOADING) {
+    } else if (status === ConnectStatus.start_loading) {
       S.AirCastActor.airCastStop({});
-    } else if (status === connectStatusMAP.CONNECTED) {
+    } else if (status === ConnectStatus.connected) {
       // 结束投屏，返回选择投屏方式
       S.AirCastActor.connectStart({});
     } else {
@@ -118,13 +125,15 @@ export const ConnectStatusContainer = ({
     <div className="aircast-page-container aircast-connect-status-container">
       {ConnectStatus2Views(connectStatus)}
       <Ele.mainBtn
-        className={connectStatus === "connected" ? "aircast-finish-btn" : ""}
+        className={
+          connectStatus === ConnectStatus.connected ? "aircast-finish-btn" : ""
+        }
         type={"primary"}
         onClick={() => {
           cancelHandler(connectStatus);
         }}
       >
-        {connectStatus === "connected" ? "结束投屏" : "取消"}
+        {connectStatus === ConnectStatus.connected ? "结束投屏" : "取消"}
       </Ele.mainBtn>
     </div>
   );

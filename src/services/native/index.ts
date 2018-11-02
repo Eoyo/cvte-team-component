@@ -4,7 +4,7 @@ import { message } from "antd";
  * @File:  与native交流协议
  * @Date: 2018-08-02 01:55:27
  * @Last Modified by: xutao@cvte.com
- * @Last Modified time: 2018-10-10 15:28:45
+ * @Last Modified time: 2018-11-01 19:13:36
  */
 export * from "./_aircast";
 export * from "./_common";
@@ -59,6 +59,7 @@ const isNativeReject = () => {
     !(BUILD_ENV === "DEVELOP" && RUN_ENVIRONMENT === "SERVER");
   return res;
 };
+
 // TODO 劫持console
 // develop 环境，才可以弹出message
 export const nativeLogMessage = (title: string, msg?: object) => {

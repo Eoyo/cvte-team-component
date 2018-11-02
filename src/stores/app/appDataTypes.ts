@@ -1,3 +1,5 @@
+import { UTILS_GET_APP_VERSION_RESPONSE_TYPE } from "src/services/native";
+
 export type appDataTypes = {
   userData: {
     displayName: string;
@@ -16,4 +18,6 @@ export type appDataTypes = {
   baseURL?: string;
   server_name?: string;
   mrbsServer?: string;
+  fullVersion?: UTILS_GET_APP_VERSION_RESPONSE_TYPE;
+  fridayAppId: string;
 };

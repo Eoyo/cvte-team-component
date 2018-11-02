@@ -22,6 +22,7 @@ import {
   getFileType,
   UTF8,
 } from "../../../../view/content/Meeting/content/FileListViewer/FileList/analyFIleType";
+import { fridayPushData } from "src/friday";
 
 export const uploadFile = Act<MeetingTypes.InitState>()({
   addUploaderFile: {
@@ -260,7 +261,7 @@ export const uploadFile = Act<MeetingTypes.InitState>()({
         continue;
       }
       const fileType = getFileType(file.name);
-      message.info(file.name);
+      // message.info(file.name);
 
       // 构建一个参数对象
       const oneFile: MeetingTypes.UploaderFile = {
@@ -304,6 +305,14 @@ export const uploadFile = Act<MeetingTypes.InitState>()({
         Meeting.popShow({ opeType: "someWrong", show: true });
       });
     }
+    // 上传会议文件
+    fridayPushData({
+      event: "upload",
+      attr: {
+        meetingId: s.aimAtMeetingId,
+      },
+      eventName: "MEETING_FILE_UPLOAD",
+    });
     return {
       meetingPage: {
         uploadFiles: [...fu(s), ...fileList],

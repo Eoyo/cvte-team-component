@@ -2,7 +2,7 @@
  * @File:  输入链接码容器
  * @Date: 2018-08-16 22:19:26 
  * @Last Modified by: xutao@cvte.com
- * @Last Modified time: 2018-09-04 15:20:37
+ * @Last Modified time: 2018-11-01 16:13:39
  */
 import * as React from "react";
 import { TypePincode } from "../../Types/InputTypes";
@@ -21,6 +21,8 @@ import {
   airOnStopped,
 } from "../../../../../../../services/native";
 import { AirCastActor } from "../../AirCastActor";
+import { fridayPushData } from "src/friday";
+
 // 容器
 export class InputContainer extends React.Component<TypePincode> {
   forID = "vcode";
@@ -29,6 +31,11 @@ export class InputContainer extends React.Component<TypePincode> {
     pincode: "", // 链接码
   };
   connectAirCast(pincode: string) {
+    // 镜像投屏（点击连接按钮
+    fridayPushData({
+      event: "click",
+      eventName: "AIR_CAST_CONNECT_BUTTON_CLICK",
+    });
     function connectErrorHandler() {
       S.AirCastActor.merge({
         isPinCodevalid: false,

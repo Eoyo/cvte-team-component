@@ -18,7 +18,7 @@ export type ConfirmDetailModifyProps = {
 export const C_ConfirmModify = MeetingConnect<ConfirmDetailModifyProps>(s => {
   return {
     onConfirm(decide) {
-      decide ? Meeting.resetMessage({}) : Meeting.cancelModifyDetail({});
+      decide ? Meeting.modifyDetail({}) : Meeting.cancelModifyDetail({});
     },
     disable: !checkMeetingInfo(s),
   };

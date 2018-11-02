@@ -168,7 +168,7 @@ export class ContactSearchAdd extends Component<
                   this.reset();
                 }}
                 keyword={keyword}
-                onKeyUp={ev => {
+                onKeyDown={ev => {
                   if (ev.keyCode === 13) {
                     this._searchByKeyWord();
                   }

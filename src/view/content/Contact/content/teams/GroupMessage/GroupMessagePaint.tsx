@@ -9,11 +9,9 @@ import {
 } from "../../../../AddGroup/AddGroupTypes";
 import { Fusion } from "../../../../../../stores/Actor/fusion";
 import { U } from "../../../../../../utils";
-import { Ele } from "../../../../../common/ts-styled/ele";
 import { Counter } from "src/view/content/Meeting/content/common/Counter/Counter";
 import { HrLine } from "src/view/content/Meeting/content/common/Layout/TitleLine";
 import { ScrollbarContain } from "src/view/content/common/ScrollbarContain/ScrollbarContain";
-import { expandArr } from "src/utils/Obj/array";
 
 S.Hinger.subscribe(s => {
   const { groupMessage } = S.GroupMessage.grab();
@@ -119,7 +117,7 @@ export const ContainGroupMessage = Fusion(S.GroupMessage.getStore())(s => {
         </div>
         <div className="group-base-body group-base-body-memberList">
           <ScrollbarContain>
-            <MemberList data={expandArr(p.memberList.value, 30)} />
+            <MemberList data={p.memberList.value} />
           </ScrollbarContain>
         </div>
       </div>

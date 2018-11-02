@@ -1,6 +1,4 @@
 import * as React from "react";
-import "./TimePickerPopCard.scss";
-
 import { getTimeArray } from "src/utils/String/timeTick/TimeArray";
 import { timeValue } from "src/utils/String/timeTick/Tick";
 import { NumberPicker } from "./NumberPicker/NumberPicker";
@@ -9,6 +7,7 @@ import { DateCalenderPicker } from "./DateCalenderPicker/DateCalenderPicker";
 import moment from "moment";
 import _ from "lodash";
 import { U } from "src/utils";
+import { TimePickerContent } from "./TimePickerPopCardStyle";
 
 export type TimePickerPopCardProps = {
   visibale: boolean;
@@ -36,7 +35,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
     day: moment(Date.now()),
     isClear: false,
     startTimeEnableWindow: [this.minTimePick, 100] as [number, number],
-    endTimeEnableWindow: [this.minTimePick, 100] as [number, number]
+    endTimeEnableWindow: [this.minTimePick, 100] as [number, number],
   };
   startTimeArr = getTimeArray(15, "minute")(0, 24 * timeValue.hour - 1);
   endTimeArr = getTimeArray(15, "minute")(1, 24 * timeValue.hour);
@@ -62,7 +61,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       this.setState({
         startTimePick,
         endTimePick,
-        endTimeEnableWindow: [startTimePick, 100]
+        endTimeEnableWindow: [startTimePick, 100],
       });
     }
   };
@@ -74,11 +73,11 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       if (i < this.state.startTimePick) {
         this.setState({
           startTimePick: i,
-          endTimePick: i
+          endTimePick: i,
         });
       } else {
         this.setState({
-          endTimePick: i
+          endTimePick: i,
         });
       }
     }
@@ -98,7 +97,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
     let todayStart = this.getDayStart(moment(new Date()));
     let selectDayStart = this.getDayStart(cur);
     this.setState({
-      day: cur.clone()
+      day: cur.clone(),
     });
 
     if (selectDayStart > todayStart) {
@@ -128,7 +127,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       startTimeEnableWindow: win,
       startTimePick,
       endTimePick,
-      endTimeEnableWindow: [startTimePick, 100]
+      endTimeEnableWindow: [startTimePick, 100],
     });
   };
   toClear() {
@@ -137,7 +136,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       endTimePick: this.minTimePick,
       endTimeEnableWindow: [this.minTimePick, 100],
       day: moment(Date.now()),
-      isClear: true
+      isClear: true,
     });
   }
   getTimeStr() {
@@ -147,7 +146,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
         <span>{s.day.format("YYYY-MM-DD")}</span>
         <span
           style={{
-            marginLeft: "15px"
+            marginLeft: "15px",
           }}
         >
           {this.trimStr(this.startTimeArr[s.startTimePick - 1])}
@@ -181,7 +180,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
     // 归约是否可见, 和当前的状态比较!!!
     if (nextProps.visibale !== this.state.visibale) {
       this.setState({
-        visibale: nextProps.visibale
+        visibale: nextProps.visibale,
       });
     }
     // 归约时间的设置, 内部改变操作时不触发change通知外面.so:无需比较;
@@ -198,7 +197,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
   componentWillMount() {
     // 初始化
     this.setState({
-      visibale: this.props.visibale
+      visibale: this.props.visibale,
     });
     this.setValueFromProps(this.props.defaultValue);
   }
@@ -240,7 +239,10 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
         this.trimStr(this.startTimeArr[s.startTimePick - 1]),
         "HH:mm"
       ),
-      endTime: moment(this.trimStr(this.endTimeArr[s.endTimePick - 1]), "HH:mm")
+      endTime: moment(
+        this.trimStr(this.endTimeArr[s.endTimePick - 1]),
+        "HH:mm"
+      ),
     });
     this.props.onVisibleChange && this.props.onVisibleChange(false);
   };
@@ -249,7 +251,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
     const p = this.props;
     const s = this.state;
     return (
-      <div className="time-picker-content schedule-time-picker">
+      <TimePickerContent>
         <div className="time-picker-title-line">
           <div className="date-title">会议日期</div>
           <div className="time-title">开始时间</div>
@@ -274,7 +276,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
           className="confirm-group"
           onClose={() => {
             this.setState({
-              visibale: false
+              visibale: false,
             });
             p.onVisibleChange && p.onVisibleChange(false);
           }}
@@ -288,7 +290,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
           }
           onConfirm={this.setOutChange}
         />
-      </div>
+      </TimePickerContent>
     );
   }
 }

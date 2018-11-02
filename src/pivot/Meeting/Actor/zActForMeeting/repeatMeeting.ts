@@ -127,20 +127,11 @@ export const repeatMeeting = Act<MeetingTypes.InitState>()({
         },
       },
     };
-    const body = s.editingDetail;
+    let updateInfo = getUpdateInfo(s);
     if (repeatMeetingId) {
       const reqData = {
-        subject: body.subject,
-        content: body.content,
-        beginTime: U.formDate.hourMinute(body.beginTime),
-        endTime: U.formDate.hourMinute(body.endTime),
-        address: body.address,
-        repeatStartTime: body.repeatStartTime,
-        repeatEndTime: body.repeatEndTime,
-        repeatType: body.repeatType,
-        repeatValue: body.repeatValue,
+        ...updateInfo,
         peopleNum: 10,
-        roomId: body.roomId,
       } as patchRepeatMeetingTypes.body;
       const res:
         | checki<patchRepeatMeetingTypes.response>
@@ -158,6 +149,12 @@ export const repeatMeeting = Act<MeetingTypes.InitState>()({
       if (resOK(res)) {
         message.success("修改成功!");
         yield {
+          meetingData: {
+            body: {
+              ...s.meetingData.body,
+              ...s.editingDetail,
+            },
+          },
           meetingPerson: {
             detailEdit: "notEditable",
           },
@@ -246,3 +243,40 @@ export const repeatMeeting = Act<MeetingTypes.InitState>()({
     Meeting.showModifyPopCard({ view: false });
   },
 });
+
+function getUpdateInfo(s: MeetingTypes.InitState) {
+  let oldData = s.meetingData;
+  let newData = s.editingDetail;
+  let updateInfo = {} as any;
+  if (newData.address !== oldData.body.address) {
+    updateInfo.address = newData.address;
+  }
+  if (newData.beginTime !== oldData.body.beginTime) {
+    updateInfo.beginTime = newData.beginTime;
+  }
+  if (newData.content !== oldData.body.content) {
+    updateInfo.content = newData.content;
+  }
+  if (newData.endTime !== oldData.body.endTime) {
+    updateInfo.endTime = newData.endTime;
+  }
+  if (newData.repeatEndTime !== oldData.body.repeatEndTime) {
+    updateInfo.repeatEndTime = newData.repeatEndTime;
+  }
+  if (newData.repeatStartTime !== oldData.body.repeatStartTime) {
+    updateInfo.repeatStartTime = newData.repeatStartTime;
+  }
+  if (newData.repeatType !== oldData.body.repeatType) {
+    updateInfo.repeatType = newData.repeatType;
+  }
+  if (newData.repeatValue !== oldData.body.repeatValue) {
+    updateInfo.repeatValue = newData.repeatValue;
+  }
+  if (newData.subject !== oldData.body.subject) {
+    updateInfo.subject = newData.subject;
+  }
+  if (newData.roomId !== oldData.body.roomId) {
+    updateInfo.roomId = newData.roomId;
+  }
+  return updateInfo;
+}

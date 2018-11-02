@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Ele } from "src/view/common/ts-styled/ele";
-import { arrCss } from "src/utils/export";
-import "./TimePickerConfirm.scss";
+import { TimePickerWrapper } from "./TimePickerConfirmStyle";
 
 export const TimePickerConfirmGroup: React.SFC<{
   timeStr?: any;
@@ -11,7 +10,7 @@ export const TimePickerConfirmGroup: React.SFC<{
   className?: string;
 }> = p => {
   return (
-    <div className={arrCss([p.className, "picker-popup-info-wrapper"])}>
+    <TimePickerWrapper className={p.className}>
       <div className="picker-popup-info-text">
         {/* {getValue(dateState, startTimeState, endTimeState)} */}
         {p.timeStr}
@@ -29,6 +28,6 @@ export const TimePickerConfirmGroup: React.SFC<{
           确定
         </Ele.secondBtn>
       </div>
-    </div>
+    </TimePickerWrapper>
   );
 };

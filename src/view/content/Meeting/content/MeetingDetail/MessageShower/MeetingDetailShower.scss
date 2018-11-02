@@ -19,7 +19,23 @@
     }
   }
 }
-
+.address-cancel-popover {
+  padding: 0;
+  .address-cancel-popover-content {
+    font-size: 14px;
+    color: #1b1b1b;
+  }
+  .ant-popover-arrow {
+    display: none;
+  }
+}
 .one-line-without-margin-bottom {
   margin-bottom: 0px !important;
+}
+.icon-cancel-warning {
+  background-image: url(~/assets/images/icon_cancel_warning.svg);
+}
+.address-one-line {
+  display: flex;
+  width: 100%;
 }

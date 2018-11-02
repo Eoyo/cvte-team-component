@@ -298,6 +298,7 @@ function resolveMeetingSearchResToMeetingData(
   );
   const personList = S.Hinger.grab().personList;
   const rus: MeetingTypes.oneMeeting = {
+    orderStatus: r.orderState,
     body: {
       subject: r.subject,
       content: r.content,
@@ -378,6 +379,7 @@ function resolveMeetingListToSnapshot(v: getMeetingListTypes.response) {
     );
     if (status === "none") return;
     const oneMeeting: MeetingTypes.oneMeeting = {
+      orderStatus: onep.meeting.orderState,
       rightClickMenu: false,
       masterId: onep.meeting.master,
       fromName: onep.invitor && onep.invitor.displayName,

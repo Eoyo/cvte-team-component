@@ -2,6 +2,7 @@
 
 import { Spore } from "../http/region";
 import { checki } from "../../utils/checkOperator";
+import { MeetingTypes } from "../../pivot/Meeting/Actor/MeetingTypes";
 
 type integer = number;
 // 2.1.1 获取授权码
@@ -234,6 +235,7 @@ export namespace getMeetingListTypes {
       }[];
       repeatMeeting: string; // 关联的重复会议 id
       order: string; // 对应的会议室订单id
+      orderState: MeetingTypes.MeetingOrderStatus; //订单状态，0为没有预约会议室，1为预约，2为签到，3为结束，4为取消
     };
     member: {
       user: {
@@ -580,6 +582,7 @@ export namespace searchMeetingMessageTypes {
     }[];
     repeatMeeting: string; // 关联的重复会议 id
     order: string; // 对应的会议室订单id
+    orderState: MeetingTypes.MeetingOrderStatus;
   };
   // 400|default
   export type ominous =
@@ -1782,19 +1785,19 @@ export namespace patchRepeatMeetingTypes {
     // 'Content-Type' : string;
   };
   export type body = {
-    subject: string; // 会议标题
-    content: string; // 会议内容
-    beginTime: string; // 首次会议开始时间，HH:mm 格式的时间
-    endTime: string; // 首次会议结束时间，HH:mm 格式的时间
-    address: string; // 会议地点
-    roomId: string; // 会议室 id
-    repeatStartTime: number; // 重复会议开始时间，unix时间戳，单位毫秒
-    repeatEndTime: number; // 重复会议结束时间，unix时间戳，单位毫秒
-    repeatType: number; // 重复类型，0为日，1为周
-    repeatValue: string; // 如果重复类型为日，则表示每 x 天重复。如 x=1为每天重复，x=2为每两天重复。如果重复类型为周，则表示重复的星期，值为0~6，多个重复日期使用逗号分隔。0为星期天，1为星期一，6为周六
-    type: number; // 会议类型，兼容会议室管理前端需求
-    scope: number; // 会议范围，兼容会议室管理前端需求
-    peopleNum: number; // 会议人数，兼容会议室管理前端需求
+    subject?: string; // 会议标题
+    content?: string; // 会议内容
+    beginTime?: string; // 首次会议开始时间，HH:mm 格式的时间
+    endTime?: string; // 首次会议结束时间，HH:mm 格式的时间
+    address?: string; // 会议地点
+    roomId?: string; // 会议室 id
+    repeatStartTime?: number; // 重复会议开始时间，unix时间戳，单位毫秒
+    repeatEndTime?: number; // 重复会议结束时间，unix时间戳，单位毫秒
+    repeatType?: number; // 重复类型，0为日，1为周
+    repeatValue?: string; // 如果重复类型为日，则表示每 x 天重复。如 x=1为每天重复，x=2为每两天重复。如果重复类型为周，则表示重复的星期，值为0~6，多个重复日期使用逗号分隔。0为星期天，1为星期一，6为周六
+    type?: number; // 会议类型，兼容会议室管理前端需求
+    scope?: number; // 会议范围，兼容会议室管理前端需求
+    peopleNum?: number; // 会议人数，兼容会议室管理前端需求
   };
   // 204
   export type response = {};

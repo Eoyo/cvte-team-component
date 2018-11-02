@@ -71,7 +71,7 @@ type NiceScrollConfig = Partial<{
   enableobserver: boolean; // true, observe 的 content div;
   scrollbarid: boolean | string; // flase , set an id for scroll bar;
 }>;
-export const a = (
+export const JqueryNiceScroll = (
   obj: any
 ): JQuery<any> & {
   niceScroll: (opt: NiceScrollConfig) => any;
@@ -115,7 +115,7 @@ export class ScrollbarContain extends React.Component<{
   };
   setScroll() {
     // nice scroll has style bug;
-    a(this.scrollContent).niceScroll(
+    JqueryNiceScroll(this.scrollContent).niceScroll(
       Object.assign(
         {},
         ScrollbarContainConfig,
@@ -135,7 +135,7 @@ export class ScrollbarContain extends React.Component<{
         if (!this.isEntered) {
           this.isEntered = true;
           this.setScroll();
-          a(this.scrollContent)
+          JqueryNiceScroll(this.scrollContent)
             .getNiceScroll()
             .resize();
         } else {
@@ -151,7 +151,10 @@ export class ScrollbarContain extends React.Component<{
   }
   resize = _.debounce(() => {
     const content = this.scrollContent;
-    a(content)
+
+    // content 的大小改变时触发scroll
+    JqueryNiceScroll(content)
+      .trigger("scroll")
       .getNiceScroll()
       .resize();
   }, 200);

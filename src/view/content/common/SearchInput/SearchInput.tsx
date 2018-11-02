@@ -14,10 +14,11 @@ export type SearchInputProps = {
 
   searchkeyWord?: Function;
   onInput?: Function;
-  onKeyUp?: Function;
+  onKeyDown?: Function;
   clear: Function;
   onChange?: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: Function;
+  onPressEnter?: () => void;
 };
 export class SearchInput extends Component<SearchInputProps> {
   public state = {
@@ -33,6 +34,8 @@ export class SearchInput extends Component<SearchInputProps> {
       }
     }
   }
+  isInIme = false;
+
   setKeyWord = (ev: any) => {
     let str = ev.target.value;
     let p = this.props;
@@ -101,9 +104,12 @@ export class SearchInput extends Component<SearchInputProps> {
                 p.onBlur();
               }
             }}
-            onKeyUp={ev => {
-              typeof p.onKeyUp === "function" && p.onKeyUp(ev);
-              this.setKeyWord(ev);
+            onKeyDown={ev => {
+              if (ev.keyCode === 13 && this.isInIme) {
+                return false;
+              }
+              typeof p.onKeyDown === "function" && p.onKeyDown(ev);
+              return this.setKeyWord(ev);
             }}
             onChange={ev => {
               typeof p.onChange === "function" && p.onChange(ev);
@@ -113,6 +119,22 @@ export class SearchInput extends Component<SearchInputProps> {
             value={keyword}
             ref={ele => {
               ele && (this.input = ele.input);
+            }}
+            onPressEnter={ev => {
+              if (ev.keyCode === 13 && this.isInIme) {
+                return false;
+              }
+              return typeof p.onPressEnter === "function" && p.onPressEnter();
+            }}
+            onCompositionStart={ev => {
+              // message.info("start");
+              this.isInIme = true;
+            }}
+            onCompositionUpdate={ev => {
+              // message.warning("update");
+            }}
+            onCompositionEnd={ev => {
+              this.isInIme = false;
             }}
           />
         ) : (
@@ -147,9 +169,12 @@ export class SearchInput extends Component<SearchInputProps> {
               typeof p.onInput === "function" && p.onInput(ev);
               this.setKeyWord(ev);
             }}
-            onKeyUp={ev => {
-              typeof p.onKeyUp === "function" && p.onKeyUp(ev);
-              this.setKeyWord(ev);
+            onKeyDown={ev => {
+              if (ev.keyCode === 13 && this.isInIme) {
+                return false;
+              }
+              typeof p.onKeyDown === "function" && p.onKeyDown(ev);
+              return this.setKeyWord(ev);
             }}
             onChange={ev => {
               typeof p.onChange === "function" && p.onChange(ev);
@@ -157,6 +182,22 @@ export class SearchInput extends Component<SearchInputProps> {
             value={keyword}
             ref={ele => {
               ele && (this.input = ele.input);
+            }}
+            onPressEnter={ev => {
+              if (ev.keyCode === 13 && this.isInIme) {
+                return false;
+              }
+              return typeof p.onPressEnter === "function" && p.onPressEnter();
+            }}
+            onCompositionStart={ev => {
+              // message.info("start");
+              this.isInIme = true;
+            }}
+            onCompositionUpdate={ev => {
+              // message.warning("update");
+            }}
+            onCompositionEnd={ev => {
+              this.isInIme = false;
             }}
           />
         )}

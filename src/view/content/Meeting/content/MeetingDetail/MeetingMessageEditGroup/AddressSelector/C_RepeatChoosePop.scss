@@ -1,34 +1,46 @@
 .repeat-time-selector-wrapper {
-  width: 519px;
+  width: 522px;
 }
 .repeat-time-selector-middle-content-wrapper {
   padding: 0 20px;
+  width: 100%;
+  .repeat-time-selector-no-day-tips {
+    color: #d96d5b;
+    font-size: 12px;
+  }
   .repeat-time-selector-checkbox-group {
     margin-top: 20px;
     margin-bottom: 18px;
+  }
+  .repeat-time-selector-error {
+    border: 1px solid #d96d5b;
+    margin-bottom: 10px;
+  }
+  .repeat-time-selector-normal {
+    border: 1px solid #dcdfe6;
+    margin-bottom: 28px;
   }
   .repeat-time-selector-date-wrapper {
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
-    border: 1px solid #dcdfe6;
     border-radius: 5px;
     align-items: center;
     width: 100%;
     height: 28px;
     line-height: 28px;
-    margin-bottom: 28px;
     .repeat-time-selector-date-title {
+      flex-shrink: 1;
       &::before {
         content: "*";
-        color: red;
+        color: #d96d5b;
       }
     }
     .repeat-time-select-date-picker-icon {
       align-items: center;
     }
     .repeat-time-selector-date-picker {
-      height: 26px;
+      height: 24px;
       padding: 0 30px;
       color: #767676;
       font-size: 12px;

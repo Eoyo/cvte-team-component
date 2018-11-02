@@ -94,7 +94,7 @@ class EditRemarkComponents extends Component<EditRemarkState> {
           placeholder={"请输入备注名称"}
           className="editRemark-input lighter-input"
           keyword={this.state.value}
-          onKeyUp={ev => {
+          onKeyDown={ev => {
             if (ev.keyCode === 13) {
               this.saveRemark();
             }

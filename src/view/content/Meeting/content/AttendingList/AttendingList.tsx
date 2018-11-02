@@ -129,9 +129,10 @@ export const AttendingPerson: React.SFC<AttendingPersonInfoProps> = p => {
 
 // 参加会议的人员列表.
 export const C_AttendingList = MeetingConnect<AttendingListProps>(s => {
+  let personList = [...s.meetingData.attendingList];
   return {
     status: s.meetingData.status,
-    personList: s.meetingData.attendingList.sort((a, b) => {
+    personList: personList.sort((a, b) => {
       if (a.participationStatus === "master") {
         return -1;
       } else if (b.participationStatus === "master") {

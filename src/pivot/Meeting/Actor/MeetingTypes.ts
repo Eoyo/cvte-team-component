@@ -20,6 +20,9 @@ export namespace MeetingTypes {
     | "justEnd"
     | "none";
 
+  //订单状态，0为没有预约会议室，1为预约，2为签到，3为结束，4为取消
+  export type MeetingOrderStatus = 0 | 1 | 2 | 3 | 4;
+
   export type memberMessage = {
     id: string;
     phone?: string;
@@ -107,6 +110,7 @@ export namespace MeetingTypes {
     };
   }
   export type oneMeeting = meetingDetail & {
+    orderStatus: MeetingOrderStatus;
     status: MeetingStatus;
     meetingId: string;
     repeatMeetingId?: string;
@@ -120,6 +124,7 @@ export namespace MeetingTypes {
   };
   export function createOneMeetingData(status: MeetingStatus): oneMeeting {
     return {
+      orderStatus: 0,
       status,
       meetingId: "",
       shareId: "",
@@ -285,8 +290,8 @@ export namespace MeetingTypes {
     showRepeatTimeOverThirtyDayPopCard: boolean; //判断重复会议时间间隔是否大于30天,大于30天弹出的卡片
     showMeetingAddressConflictPopCard: boolean; //和会议室列表比较，冲突弹出的卡片
     updateInfo?: {
-      updateStartTime?: moment.Moment;
-      updateEndTime?: moment.Moment;
+      updateStartTime?: number;
+      updateEndTime?: number;
       updateRepeatType?: RepeatMeetingType;
       updateRepeatValue?: string;
       updateRepeatEndTime?: number;

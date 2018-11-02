@@ -1,7 +1,8 @@
-import { AirCastInitState, stepStatus } from "./AirCastState";
+import { AirCastInitState, stepStatus, Step } from "./AirCastState";
 
 import { airCastInputActor } from "./zActor/input";
 import { Actor } from "../../../../../stores/Actor/actor";
+import { ConnectStatus } from "./Types/ConnectStatusTypes";
 
 export const AirCastActor = Actor(AirCastInitState)({
   ...airCastInputActor.actions,
@@ -19,25 +20,25 @@ export const AirCastActor = Actor(AirCastInitState)({
 })({
   ...airCastInputActor.reducers,
   connectStart(s, d) {
-    return { ...s, step: stepStatus.MODE };
+    return { ...s, step: Step.mode };
   },
   airCastStartLoading(s, d) {
-    return { ...s, step: stepStatus.STATUS, status: "startLoading" };
+    return { ...s, step: Step.status, status: ConnectStatus.connect_loading };
   },
   airCastConnectError(s, d) {
-    return { ...s, step: stepStatus.STATUS, status: "connectError" };
+    return { ...s, step: Step.status, status: ConnectStatus.connect_error };
   },
   airCastNetworkError(s, d) {
-    return { ...s, step: stepStatus.STATUS, status: "networkError" };
+    return { ...s, step: Step.status, status: ConnectStatus.network_error };
   },
   airCastConnectLoading(s, d) {
-    return { ...s, step: stepStatus.STATUS, status: "connectLoading" };
+    return { ...s, step: Step.status, status: ConnectStatus.connect_loading };
   },
   airCastStart(s, d) {
-    return { ...s, step: stepStatus.STATUS, status: "connected" };
+    return { ...s, step: Step.status, status: ConnectStatus.connected };
   },
   airCastStop(s, d) {
-    return { ...s, step: stepStatus.MODE, show: true };
+    return { ...s, step: Step.mode, show: true };
   },
   showModal(s, d) {
     return { ...s, show: true };
@@ -49,7 +50,7 @@ export const AirCastActor = Actor(AirCastInitState)({
     return { ...s, ...AirCastInitState };
   },
   airCastBack(s, d) {
-    return { ...s, step: stepStatus.INPUT };
+    return { ...s, step: Step.input };
   },
   always(s) {
     return { ...s };

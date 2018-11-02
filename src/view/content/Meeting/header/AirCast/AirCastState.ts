@@ -1,9 +1,9 @@
-import { TypeConnectStatus, CONNECTED } from "./Types/ConnectStatusTypes";
+import { TypeConnectStatus, ConnectStatus } from "./Types/ConnectStatusTypes";
 import { TypePincode } from "./Types/InputTypes";
 import { TypeAirCastMode } from "./Types/OpreationTypes";
-import { connectStatus } from "./Types/ConnectStatusTypes";
 
 const [INPUT, STATUS, MODE] = ["input", "status", "mode"];
+// const INPUT = 'input';
 
 export const stepStatus = {
   INPUT,
@@ -11,17 +11,24 @@ export const stepStatus = {
   MODE,
 };
 
+export enum Step {
+  input,
+  status,
+  mode, // 选择链接方式
+}
+
 export type TypeAirCast = {
   show: boolean;
-  step: string;
+  step: Step;
 } & TypeConnectStatus &
   TypePincode &
   TypeAirCastMode;
 
+// 使用限制值得类型
 export const AirCastInitState: TypeAirCast = {
   show: false,
-  step: INPUT,
-  status: connectStatus.CONNECT_LOADING,
+  step: Step.input,
+  status: ConnectStatus.start_loading,
   errorCode: 0,
   pincode: "",
   isConfirmToConnect: false,

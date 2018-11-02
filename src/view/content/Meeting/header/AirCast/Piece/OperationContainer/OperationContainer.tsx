@@ -46,7 +46,9 @@ export const OperationContainer = () => {
       <div className="aircast-connect-status-area">
         <p className="tip-message info-message">选择投屏方式</p>
         <div className="aircast-connect-status">
-          <span className="connect-info">已连接MAXHUB</span>
+          <span className="connect-info">
+            已连接: <span className="maxhub-name">MAXHUB</span>
+          </span>
           <span className="airconnect-disconnect-btn" onClick={disconnectAir}>
             断开
           </span>

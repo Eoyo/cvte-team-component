@@ -19,6 +19,7 @@ import { S } from "../../../../../../stores";
 import { AddSomethingBtn } from "../../common/FileSelector/InputFile";
 import styled from "../../../../../../../node_modules/styled-components";
 import { BlockCardContent } from "../../common/Layout/MeetingBlockCard";
+import { fridayPushData } from "src/friday";
 
 export const TitleLineWrapper = styled("div")`
   --styled: "TitleLineWrapper";
@@ -44,6 +45,14 @@ export const C_NoteEditor = MeetingConnect<ReactEditorProProps>(s => {
     onValueChange: str => {
       S.Meeting.savingNote({
         noteStr: str,
+      });
+      // 写笔记（笔记自动保存
+      fridayPushData({
+        event: "auto-save",
+        attr: {
+          meetingId: s.aimAtMeetingId,
+        },
+        eventName: "MEETING_NOTE_SAVE",
       });
     },
     onFocus: (focus, lastFocus) => {

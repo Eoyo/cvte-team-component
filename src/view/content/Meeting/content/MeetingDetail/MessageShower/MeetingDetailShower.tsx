@@ -7,6 +7,8 @@ import * as moment from "moment";
 import { flex } from "../../../../../common/ts-styled/flex";
 import { Popover } from "antd";
 import "./MeetingDetailShower.scss";
+import { RgihtCeilTop } from "../../common/Layout/RightTable";
+import { AddressCancel } from "./MeetingDetailShowerStyle";
 /**
  * 展示时的
  */
@@ -16,8 +18,8 @@ export const S_OneMes = styled("div")`
   margin-bottom: 10px;
   ${flex.rowLeft};
   display: inline-flex;
-  align-items: flex-start;
   width: 100%;
+  align-items: flex-start;
 `;
 const KeyName = styled("span")`
   --styled: "KeyName";
@@ -36,8 +38,12 @@ const Value = styled("span")`
   color: #767676;
   display: inline-block;
   line-height: 20px;
+  height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+  > * {
+    float: left;
+  }
 `;
 
 // 一条key value 数据.
@@ -77,7 +83,9 @@ export class OneMes extends React.Component<{
             <Value id={this.id}>{p.value}</Value>
           </Popover>
         ) : (
-          <Value id={this.id}>{p.value}</Value>
+          <Value id={this.id}>
+            <span>{p.value}</span> {p.children}
+          </Value>
         )}
       </S_OneMes>
     );
@@ -86,6 +94,7 @@ export class OneMes extends React.Component<{
 
 export const OneLine = styled("div")`
   --styled: "OneLine";
+  position: relative;
   ${Value} {
     width: calc(100% - 38px);
     .content-viewer {
@@ -184,14 +193,33 @@ export const MeetingDetailShower = MeetingConnect(s => {
     repeatString: repeatString,
     timeAddressClassName: timeAddressClassName,
     repeatClassName: repeatClassName,
+    showCancel: s.meetingData.orderStatus === 4 ? true : false,
   };
 })(p => (
   <>
     <OneLine className={p.timeAddressClassName}>
       <OneMes keyName={"时间"} value={p.time} />
     </OneLine>
-    <OneLine>
-      <OneMes keyName={"地点"} value={p.meetingRoom} popOver={true} />
+    <OneLine className="address-one-line">
+      <OneMes keyName={"地点"} value={p.meetingRoom} popOver={true}>
+        {p.showCancel ? (
+          <Popover
+            trigger="hover"
+            placement="bottom"
+            overlayClassName="address-cancel-popover"
+            content={
+              <div className="address-cancel-popover-content">
+                未在规定时间内签到，已自动取消预约
+              </div>
+            }
+          >
+            <AddressCancel>
+              <i className="teams-icon icon-cancel-warning" />
+              <span className="address-cancel-content">已取消</span>
+            </AddressCancel>
+          </Popover>
+        ) : null}
+      </OneMes>
     </OneLine>
     {p.repeatMeeting ? (
       <OneLine className={p.repeatClassName}>

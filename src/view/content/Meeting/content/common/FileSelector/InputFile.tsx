@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./InputFile.scss";
-
+import { mimeConfig } from "src/utils/File/fileType";
 /**
  * 通过输入框选择文件.
  */
@@ -28,10 +28,25 @@ export class InputFile extends React.Component<InputFileProps> {
         <input
           type="file"
           id={this.idStr}
-          accept=".jpg,.jpeg,.png,.bmp,.gif,.svg,.ico,.txt,.md,.rst,.ts,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.zip,.rar"
+          // .jpg,.jpeg,.png,.bmp,.gif, .svg,.ico,
+          // .txt,.md,.rst,.ts,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.zip,.rar
+          accept={[
+            mimeConfig.pptx,
+            mimeConfig.ppt,
+            mimeConfig.txt,
+            mimeConfig.doc,
+            mimeConfig.docx,
+            mimeConfig.xls,
+            mimeConfig.xlsx,
+            mimeConfig.imgae,
+
+            // xmind 的媒体类型为zip
+            mimeConfig.zip,
+            mimeConfig.rar,
+            ".rar",
+          ].join(",")}
           onChange={this.onChange}
           className="file-input"
-          multiple={true}
         />
         <label htmlFor={this.idStr}>
           <AddSomethingBtn words="" />

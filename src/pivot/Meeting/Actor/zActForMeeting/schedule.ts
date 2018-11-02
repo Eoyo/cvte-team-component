@@ -16,6 +16,7 @@ import {
 import { app } from "../../../../stores/app/app";
 import { meetingLoader } from "../../../../services/meetingroom/meetingroom";
 import * as moment from "moment";
+import { fridayPushData } from "src/friday";
 
 export const schedule = Act<MeetingTypes.InitState>()({
   cancelSchedule: {} as { id?: string },
@@ -92,7 +93,6 @@ export const schedule = Act<MeetingTypes.InitState>()({
   setRepeatStartTime(s, a) {
     return {
       editingDetail: {
-        beginTime: a.startTime,
         repeatStartTime: a.startTime,
       },
     };
@@ -211,6 +211,11 @@ export const schedule = Act<MeetingTypes.InitState>()({
   },
   // 创建一个预约会议, 并放入快照中.
   createSchedule: (s, a) => {
+    // 点击预约会议按钮
+    fridayPushData({
+      event: "click",
+      eventName: "CREATE_MEETING_BUTTON_CLICK",
+    });
     //不管是使用上一次预约的会议，还是创建一个新的预约的会议，都不需要显示“会议室被占用”这一文字
     //所以设置meetingBeUsed为false
     let addContent = checkAddScheduleContent(s);
@@ -283,6 +288,11 @@ export const schedule = Act<MeetingTypes.InitState>()({
     if (s.meetingData.status !== "schedule") {
       return {};
     }
+    // 点击发出预约按钮
+    fridayPushData({
+      event: "click",
+      eventName: "CREATE_MEETING_SEND_BUTTON_CLICK",
+    });
     const meetingBody = s.editingDetail;
     let now = Date.now();
     //如果当前时间小于预约会议的开始时间,就需要弹出提示,并且在时间输入框中显示对应的字符
@@ -541,6 +551,12 @@ export const schedule = Act<MeetingTypes.InitState>()({
     }
   },
   cancelSchedule: (s, a) => {
+    // 点击取消预约按钮
+    fridayPushData({
+      event: "click",
+      attr: { meetingId: a.id },
+      eventName: "CANCEL_MEETING_BUTTON_CLICK",
+    });
     return {
       scheduleMeetingDraft: {
         ...MeetingTypes.createOneMeetingSnapshot(),
@@ -630,12 +646,13 @@ export const schedule = Act<MeetingTypes.InitState>()({
           ? 0
           : s.editingDetail.repeatEndTime;
       let overThirtyDay = endTime - beginTime > thirtyDay ? true : false;
-      let beginOverEnd = beginTime - s.editingDetail.endTime > 0 ? true : false;
+      let beginOverEnd =
+        beginTime - (s.editingDetail.repeatEndTime || 0) > 0 ? true : false;
       if (overThirtyDay || beginOverEnd) {
         yield {
           updateInfo: {
-            updateStartTime: moment(beginTime),
-            updateEndTime: a.date.endTime,
+            updateStartTime: beginTime,
+            updateEndTime: U.formDate.getTimeStick(a.date.day, a.date.endTime),
           },
           showRepeatTimeOverThirtyDayPopCard: true,
         };
@@ -685,8 +702,11 @@ export const schedule = Act<MeetingTypes.InitState>()({
         if (conflict === true) {
           yield {
             updateInfo: {
-              updateStartTime: moment(beginTime),
-              updateEndTime: a.date.endTime,
+              updateStartTime: beginTime,
+              updateEndTime: U.formDate.getTimeStick(
+                a.date.day,
+                a.date.endTime
+              ),
             },
             showMeetingAddressConflictPopCard: true,
           };

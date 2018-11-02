@@ -5,6 +5,7 @@ import {
 } from "../../../../../../../pivot/Meeting/Actor/MeetingActor";
 import { PopCard } from "../../../../../../common/component/Pop/PopCard";
 import { Ele } from "../../../../../../common/ts-styled/ele";
+import * as moment from "moment";
 import "./C_MeetingAddressConflictPopCard.scss";
 
 export const C_MeetingAddressConflictPopCard = MeetingConnect(s => {
@@ -40,9 +41,9 @@ export const C_MeetingAddressConflictPopCard = MeetingConnect(s => {
             //如果点击是，则需要把修改的时间改到editingDetail中
             Meeting.setMeetingBaseMessage({
               date: {
-                day: s.updateInfo && s.updateInfo.updateStartTime,
-                startTime: s.updateInfo && s.updateInfo.updateStartTime,
-                endTime: s.updateInfo && s.updateInfo.updateEndTime,
+                day: s.updateInfo && moment(s.updateInfo.updateStartTime),
+                startTime: s.updateInfo && moment(s.updateInfo.updateStartTime),
+                endTime: s.updateInfo && moment(s.updateInfo.updateEndTime),
               },
             });
             Meeting.setMeetingAddressConflictPopCard({ show: false });

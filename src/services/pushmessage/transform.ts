@@ -2,7 +2,7 @@
  * @File: 消息数据转化为队列数据
  * @Date: 2018-09-06 16:31:21 
  * @Last Modified by: xutao@cvte.com
- * @Last Modified time: 2018-10-30 22:06:46
+ * @Last Modified time: 2018-10-31 21:59:23
  */
 // import { db } from "../../localDB";
 import * as Actions from "./relation";
@@ -50,6 +50,7 @@ const pushserviceSystemRelation = Object.keys(pushserviceSystem).reduce(
   },
   {}
 );
+// console.log(pushserviceSystemRelation, teamsSystemRelation);
 // let allRelation = Object.keys(teams).reduce(
 //   (result: any, systemKey: string) => {
 //     // system
@@ -74,7 +75,7 @@ const pushserviceSystemRelation = Object.keys(pushserviceSystem).reduce(
 
 // 暂时
 const findRelation = (data: any, isPushMessage: boolean) => {
-  console.log(data, isPushMessage);
+  utilsLog({ msg: JSON.stringify(data) + "=====>" + isPushMessage });
   if (isPushMessage) {
     const {
       action,
@@ -99,14 +100,19 @@ const findRelation = (data: any, isPushMessage: boolean) => {
   }
 };
 // 处理数据，兼容window 传参格式
-const dealData = (data: any) => {
+const dealData = (data: any, isPushMessage: boolean) => {
+  console.log(typeof data);
   if (APPSystem.osx) {
     return data;
   } else {
-    return {
-      ...data,
-      data: JSON.parse(data.data),
-    };
+    if (isPushMessage) {
+      return {
+        ...data,
+        data: JSON.parse(data.data),
+      };
+    } else {
+      return data;
+    }
   }
 };
 
@@ -125,7 +131,7 @@ export const transformAction: TypetransformAction = (config: {
     return () => {
       return new Promise((resolve, reject) => {
         // 兼容window 格式
-        const dataAfterDeal = dealData(data);
+        const dataAfterDeal = dealData(data, isPushMessage);
         //
         const relation: TypeRelation = findRelation(
           dataAfterDeal,

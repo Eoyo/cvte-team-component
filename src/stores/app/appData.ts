@@ -83,4 +83,10 @@ export const appData: appDataTypes = {
   // @ts-ignore
   mrbsServer: MRBS_WEB,
   server_name: "",
+  fullVersion: {
+    version: "",
+    frontEndCommit: "",
+    frontEndGitCount: "",
+  },
+  fridayAppId: "2efba23d0fcc38f73e18464f6e9b6ba5",
 };

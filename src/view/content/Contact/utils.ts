@@ -4,7 +4,6 @@ import { S } from "../../../stores";
 import { isResOK } from "../../../utils/Restful";
 import { HingerTypes } from "../../../stores/DataHinger/DataHingerTypes";
 import { AddGroupTypes } from "../AddGroup/AddGroupTypes";
-import { getITAvatarUrl } from "src/services/avatar";
 
 function getSelfInfo() {
   let data = AppStore.get("userData");
@@ -165,48 +164,80 @@ export async function getTeam() {
 function showTeamInfos(key: string) {
   if (!key) return;
   const { teams, contacts } = S.contactListOperation.grab();
-  for (let i in teams) {
-    if (teams[i].id === key) {
-      let members: AddGroupTypes.OnePerson[] = [];
-      for (let j in teams[i].members) {
-        let isFriend = false;
-        let member = teams[i].members[j];
-        if (
-          contacts.find(param => {
-            return param.id === member.id;
-          })
-        ) {
-          isFriend = true;
-        }
-        let tmpMember: AddGroupTypes.OnePerson = {
-          id: member.id,
-          name: member.remark || member.displayName,
-          headIconUrl: member.avatar,
-          registed: member.registed || false,
-          hasTrueId: !!member.id,
-          userPersonalMessage: {
-            email: member.email || "",
-            phone: member.phone || "",
-            department: member.department,
-            jobTitle: member.jobTitle,
-          },
-          isFriend: isFriend,
-        };
-        members.push(tmpMember);
-      }
-      S.GroupMessage.merge({
-        groupMessage: {
-          groupName: teams[i].name,
-          groupId: teams[i].id,
-          createTimeStick: teams[i].createTime,
+  const team = teams.find(item => item.id === key);
+  if (team) {
+    const members: AddGroupTypes.OnePerson[] = team.members.map(member => {
+      return {
+        id: member.id,
+        name: member.remark || member.displayName,
+        headIconUrl: member.avatar,
+        registed: member.registed || false,
+        hasTrueId: !!member.id,
+        userPersonalMessage: {
+          email: member.email || "",
+          phone: member.phone || "",
+          department: member.department,
+          jobTitle: member.jobTitle,
         },
-        groupMemberlist: {
-          value: members,
-        },
-      });
-      break;
-    }
+        isFriend: !!contacts.find(contact => contact.id === member.id),
+      };
+    });
+    S.GroupMessage.merge({
+      groupMessage: {
+        groupName: team.name,
+        groupId: team.id,
+        createTimeStick: team.createTime,
+      },
+      groupMemberlist: {
+        value: members,
+      },
+    });
+  } else {
+    // fetch 获取团队信息
+    getTeam();
   }
+  // for (let i in teams) {
+  //   if (teams[i].id === key) {
+  //     let members: AddGroupTypes.OnePerson[] = [];
+  //     for (let j in teams[i].members) {
+  //       let isFriend = false;
+  //       let member = teams[i].members[j];
+  //       if (
+  //         contacts.find(param => {
+  //           return param.id === member.id;
+  //         })
+  //       ) {
+  //         isFriend = true;
+  //       }
+  //       let tmpMember: AddGroupTypes.OnePerson = {
+  //         id: member.id,
+  //         name: member.remark || member.displayName,
+  //         headIconUrl: member.avatar,
+  //         registed: member.registed || false,
+  //         hasTrueId: !!member.id,
+  //         userPersonalMessage: {
+  //           email: member.email || "",
+  //           phone: member.phone || "",
+  //           department: member.department,
+  //           jobTitle: member.jobTitle,
+  //         },
+  //         isFriend: isFriend,
+  //       };
+  //       members.push(tmpMember);
+  //     }
+  // S.GroupMessage.merge({
+  //   groupMessage: {
+  //     groupName: teams[i].name,
+  //     groupId: teams[i].id,
+  //     createTimeStick: teams[i].createTime,
+  //   },
+  //   groupMemberlist: {
+  //     value: members,
+  //   },
+  // });
+  // break;
+  // }
+  // }
 }
 
 export function showTeamInfo(key: string) {

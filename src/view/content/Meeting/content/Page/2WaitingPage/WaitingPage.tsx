@@ -13,12 +13,31 @@ import { C_NoteEditorCard } from "../../Editor/NoteEditor/NoteEditorCard";
 export type WaitingPageProps = {};
 
 export const WaitingToast = MeetingConnect(s => {
-  return { waitingTimeStr: U.formDate.remainTime(s.meetingPage.waitingTime) };
+  let tenMinutes = 10 * 60 * 1000;
+  //如果小于等于10分钟，并且还没定会议室，就需要提醒
+  if (
+    s.meetingData.orderStatus === 1 &&
+    s.meetingPage.waitingTime <= tenMinutes
+  ) {
+    return {
+      needOrder: true,
+      waitingTimeStr: U.formDate.remainTime(s.meetingPage.waitingTime),
+    };
+  } else {
+    return {
+      needOrder: false,
+      waitingTimeStr: U.formDate.remainTime(s.meetingPage.waitingTime),
+    };
+  }
 })(p => {
   return (
     <MeetingStatusToast
       noticeIcon={<NoticeIcon type={"waitClock"} />}
-      description={`离会议开始还剩: ${p.waitingTimeStr}`}
+      description={
+        p.needOrder === false
+          ? `离会议开始还剩: ${p.waitingTimeStr}`
+          : `${p.waitingTimeStr}后开启，请尽快去会议室签到！`
+      }
       tool={null}
     />
   );

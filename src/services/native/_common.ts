@@ -16,6 +16,9 @@ import {
   UTILS_ON_WINDOW_STATE_CHANGED,
   UTILS_GET_APP_VERSION,
   CONFIG_GETMRBSDOMAIN,
+  UTILS_GET_REALTIME_MESSAGE_EVENTS,
+  CONFIG_GET_FRIDAY_APPID,
+  CONFIG_SETWEBVIEWCONFIG,
 } from "./_native_method_key";
 import {
   TypePushNotificationMessage,
@@ -66,12 +69,27 @@ export type UTILS_ON_WINDOW_STATE_CHANGED_RESPONSE_TYPE = {
   state: 0 | 1 | 2;
 };
 
+// 版本参数
 export type UTILS_GET_APP_VERSION_RESPONSE_TYPE = {
   version: string;
   frontEndCommit: string;
   frontEndGitCount: string;
 };
 
+// 获取需要侦听的实时推送事件列表
+export type UTILS_GET_REALTIME_MESSAGE_EVENTS_PARAMS_TYPE = {
+  events: string[];
+};
+// { "events": ["event1", "event2", ...] }
+
+// FRIDAY appid
+export type GET_FRIDAY_APPID_RESPONSE_TYPE = {
+  appId: string;
+};
+
+export type CONFIG_SETWEBVIEWCONFIG_PARAMS_TYPE = {
+  allowedFileTypes: string[];
+};
 /* ===================== function ===================== */
 // 添加日志
 export const utilsLog = (data: UTIL_LOG_DATA_TYPE) =>
@@ -148,5 +166,29 @@ export const utilsOnWindowStateChanged = (callback: Function) => {
   );
 };
 
+// 获取版本
 export const utilsGetAppVersion = () =>
   nativeCaller<{}, UTILS_GET_APP_VERSION_RESPONSE_TYPE>(UTILS_GET_APP_VERSION);
+
+// 实时消息推送事件[WINDOWS ONLY]
+export const utilsSetRealtimeMessageEvents = (
+  data: UTILS_GET_REALTIME_MESSAGE_EVENTS_PARAMS_TYPE
+) => {
+  nativeCaller<UTILS_GET_REALTIME_MESSAGE_EVENTS_PARAMS_TYPE, {}>(
+    UTILS_GET_REALTIME_MESSAGE_EVENTS,
+    data
+  );
+};
+
+// 获取friday appid
+export const utilsGetFridayAppId = () =>
+  nativeCaller<{}, GET_FRIDAY_APPID_RESPONSE_TYPE>(CONFIG_GET_FRIDAY_APPID);
+
+// 更新webview文件上传配置
+export const utilssetWebViewConfig = (
+  data: CONFIG_SETWEBVIEWCONFIG_PARAMS_TYPE
+) =>
+  nativeCaller<CONFIG_SETWEBVIEWCONFIG_PARAMS_TYPE, {}>(
+    CONFIG_SETWEBVIEWCONFIG,
+    data
+  );

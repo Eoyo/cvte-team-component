@@ -2,7 +2,7 @@
  * @File:  投屏大框
  * @Date: 2018-08-16 22:28:52 
  * @Last Modified by: xutao@cvte.com
- * @Last Modified time: 2018-08-24 17:54:52
+ * @Last Modified time: 2018-11-01 16:07:32
  */
 import * as React from "react";
 import { Modal } from "antd";
@@ -10,7 +10,7 @@ import { InputContainer } from "./InputContainer/InputContainer";
 import { OperationContainer } from "./OperationContainer/OperationContainer";
 import "./AirCastFrame.scss";
 
-import { TypeAirCast } from "../AirCastState";
+import { TypeAirCast, Step } from "../AirCastState";
 import { ConnectStatusContainer } from "./ConnectStatusContainer/Index";
 import { stepStatus } from "../AirCastState";
 import { FusionPro } from "../../../../../../stores/utils/fusion";
@@ -68,9 +68,9 @@ export const AirCastFusion = FusionPro(
   }
 );
 
-const step2Vies = (status: string, props: TypeAirCast) => {
+const step2Vies = (status: Step, props: TypeAirCast) => {
   switch (status) {
-    case stepStatus.INPUT: {
+    case Step.input: {
       return (
         <InputContainer
           pincode={props.pincode}
@@ -80,10 +80,10 @@ const step2Vies = (status: string, props: TypeAirCast) => {
         />
       );
     }
-    case stepStatus.STATUS: {
+    case Step.status: {
       return <ConnectStatusContainer connectStatus={props.status} />;
     }
-    case stepStatus.MODE: {
+    case Step.mode: {
       return <OperationContainer />;
     }
     default: {

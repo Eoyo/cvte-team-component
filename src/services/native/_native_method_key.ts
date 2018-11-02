@@ -51,6 +51,13 @@ export const UTILS_ON_WINDOW_STATE_CHANGED = "utils_onWindowStateChanged";
 // 获取程序版本
 export const UTILS_GET_APP_VERSION = "utils_getAppVersion";
 
+// 注册实时消息events
+export const UTILS_GET_REALTIME_MESSAGE_EVENTS =
+  "utils_provideRealTimeMessageEvents";
+
+// 获取friday events key
+export const CONFIG_GET_FRIDAY_APPID = "config_getFridayAppId";
+
 /* ============== 通用 common end ============== */
 
 /* ============== 用户 user start ============== */

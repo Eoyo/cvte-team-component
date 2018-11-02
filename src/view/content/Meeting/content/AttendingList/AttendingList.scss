@@ -70,6 +70,7 @@ $maxgridHeight: 228px;
       }
       .attending-wait {
         @include Second-title-highlight;
+        color: $co-reject;
       }
     }
   }

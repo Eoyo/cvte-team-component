@@ -81,7 +81,10 @@
   @include Second-title-highlight;
   width: 10em;
   &.clamp-text {
+    /*为了上下内容之间有间距，设置了line-height。同时为了设置span高度和同行元素相同，设置定位*/
     line-height: 1.5;
+    position: relative;
+    top: -0.25em;
   }
 }
 .remark-wrapper {
