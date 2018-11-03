@@ -208,7 +208,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       this.pickStartTime(
         this.diffTimeValueToPick(
           U.formDate.getTimeStick(value.day, value.startTime) -
-            this.getDayStart(value.startTime)
+            this.getDayStart(value.day)
         )
       );
 
@@ -216,7 +216,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       this.pickEndTime(
         this.diffTimeValueToPick(
           U.formDate.getTimeStick(value.day, value.endTime) -
-            this.getDayStart(value.endTime)
+            this.getDayStart(value.day)
         ) - 1
       );
     } else {
