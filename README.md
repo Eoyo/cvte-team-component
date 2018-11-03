@@ -15,26 +15,29 @@ export declare function TimePicker3Render(
 使用用例:
 
 ```typescript
-let ele = document.getElementById("root");
-// 引入默认的TimePicker样式
-TimePicker3Style();
-
+const ele = document.getElementById("root");
 if (ele) {
   // TimePicker3Render 在初始化后返回了一个更新函数
-  // 更新函数赋给了tpicker3, 使用tpicker3可以控制组件的渲染.
-  let tpicker3 = TimePicker3Render(ele)({
-    action: "setDefault",
-    dateValue: {
-      date: moment(Date.now()),
-      startTime: moment(Date.now()),
-      endTime: moment(Date.now())
+  // 使用update可以控制组件的渲染.
+  const update = TimePicker3Render(ele)({
+    defaultValue: {
+      day: moment(Date.now()),
+      endTime: moment(Date.now()).add(13, "h"),
+      startTime: moment(Date.now()).add(10, "h")
     },
+    showClear: true,
     onChange(data) {
-      // 使用tpicker3更新组件.
-      tpicker3({
-        action: "setValue",
-        dateValue: data
+      update({
+        defaultValue: data
       });
+    },
+
+    // 点击`确定`或`取消`将会触发VisibleChange , show =false;
+    onVisibleChange(show) {
+      if (!show) {
+        // tslint:disable-next-line:no-console
+        console.log("to close");
+      }
     }
   });
 }

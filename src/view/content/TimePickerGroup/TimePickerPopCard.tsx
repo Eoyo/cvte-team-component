@@ -15,7 +15,8 @@ export type TimePickerPopCardProps = {
     startTime: moment.Moment;
     endTime: moment.Moment;
   }): any;
-  onVisibleChange?(show: boolean): void;
+  onClose?(): void;
+  onClear?(): void;
 };
 
 type DateValue = {
@@ -134,6 +135,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       day: moment(Date.now()),
       isClear: true
     });
+    this.props.onClear && this.props.onClear();
   }
   getTimeStr() {
     const s = this.state;
@@ -237,7 +239,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
       ),
       endTime: moment(this.trimStr(this.endTimeArr[s.endTimePick - 1]), "HH:mm")
     });
-    this.props.onVisibleChange && this.props.onVisibleChange(false);
+    this.props.onClose && this.props.onClose();
   };
 
   render() {
@@ -271,7 +273,7 @@ export class TimePickerPopCard extends React.Component<TimePickerPopCardProps> {
             this.setState({
               visibale: false
             });
-            p.onVisibleChange && p.onVisibleChange(false);
+            p.onClose && p.onClose();
           }}
           timeStr={this.getTimeStr()}
           onClear={
