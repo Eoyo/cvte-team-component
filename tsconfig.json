@@ -7,9 +7,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "declaration": true,
-    "jsx": "react",
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true
+    "jsx": "react"
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/index.tsx"]
 }

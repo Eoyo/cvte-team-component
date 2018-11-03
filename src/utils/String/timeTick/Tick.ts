@@ -1,11 +1,9 @@
-import moment from "moment";
-
 let time = 0;
 
 export const timeValue = {
   minute: 60000,
   hour: 3600000,
-  day: 3600000 * 24,
+  day: 3600000 * 24
 };
 
 function minSize(size: number) {
@@ -30,7 +28,7 @@ function getMinute(size = 0) {
 
 const TickOperate = {
   getHour,
-  getMinute,
+  getMinute
 };
 export function Tick(newTime: number) {
   time = newTime;

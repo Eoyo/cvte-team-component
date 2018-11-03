@@ -1,6 +1,4 @@
 import * as moment from "moment";
-import { XmlEntities } from "html-entities";
-const XmlCodeTrans = new XmlEntities();
 // 特定的date
 export const formDate = {
   normalDay(timestick: number) {
@@ -25,12 +23,6 @@ export const formDate = {
     }
     return "";
   },
-  // 纪要的时间
-  summaryDate(t: number) {
-    const date = moment(t).format("YYYY.M.D   HH:mm");
-    // 避免空格问题
-    return XmlCodeTrans.encode(date);
-  },
   normalDay2(timestick: number) {
     return moment(timestick).format("YYYY-M-D");
   },
@@ -47,7 +39,7 @@ export const formDate = {
       lastDay: "[昨天]",
       nextWeek: formatDate,
       lastWeek: formatDate,
-      sameElse: formatDate,
+      sameElse: formatDate
     });
   },
   hourMinute(timestick: number) {
@@ -58,7 +50,7 @@ export const formDate = {
     const data = {
       hour: ((allMinute / 60) | 0) % 24,
       minute: allMinute % 60,
-      day: (allMinute / 60 / 24) | 0,
+      day: (allMinute / 60 / 24) | 0
     };
     let rus = "";
     if (data.day > 0) {
@@ -86,7 +78,7 @@ export const formDate = {
     const startTime = moment(start).format("HH:mm");
     const endTime = moment(end).format("HH:mm");
     return day + " " + startTime + "~" + endTime;
-  },
+  }
 };
 
 export const timeOut = (time: number) => {
