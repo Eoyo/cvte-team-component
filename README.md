@@ -32,12 +32,10 @@ if (ele) {
       });
     },
 
-    // 点击`确定`或`取消`将会触发VisibleChange , show =false;
-    onVisibleChange(show) {
-      if (!show) {
-        // tslint:disable-next-line:no-console
-        console.log("to close");
-      }
+    onClose() {
+      // 点击`确定`或`取消`将会触发关闭的事件
+      // tslint:disable-next-line:no-console
+      console.log("to close");
     }
   });
 }

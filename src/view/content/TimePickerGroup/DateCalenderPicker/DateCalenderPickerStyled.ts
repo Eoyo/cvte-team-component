@@ -336,11 +336,11 @@ export const DateCalenderWrapper = styled("div")`
       color: rgba(0, 0, 0, 0.25);
       display: none;
     }
-    /* .ant-calendar-selected-day .ant-calendar-date {
+    .ant-calendar-selected-day .ant-calendar-date {
       background: ${config.darkPrimary};
       color: #fff;
       border: 1px solid transparent;
-    } */
+    }
     .ant-calendar-selected-date .ant-calendar-date,
     .ant-calendar-selected-start-date .ant-calendar-date,
     .ant-calendar-selected-end-date .ant-calendar-date {
