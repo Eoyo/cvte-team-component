@@ -1,8 +1,8 @@
 import { MovingSelector } from "./MovingSelector";
 import { Lensor } from "../MovingLensor/MovingLensor";
-import _ from "lodash";
+import * as _ from "lodash";
 import { WheelEvent } from "react";
-import { start } from "repl";
+
 export function MovingAutoSelector(p: {
   offset: number;
   scrollOffset: number;

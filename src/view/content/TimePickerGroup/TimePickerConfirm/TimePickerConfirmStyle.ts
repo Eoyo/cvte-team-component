@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { StyledComponentClass } from "styled-components";
 
 export const TimePickerWrapper = styled("div")`
   --styled: "TimePickerWrapper";
