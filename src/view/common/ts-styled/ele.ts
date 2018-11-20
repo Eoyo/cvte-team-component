@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, StyledComponentClass } from "styled-components";
 import { co } from "./co";
 import { StyledPropsEle } from "../types/StyledComponent";
 
@@ -70,10 +70,11 @@ const secondBtn = styled("button")`
   }
   border: 1px solid #b2b2b2;
   border-radius: 14px;
+  font-size: 14px;
   animation: all 0.5s;
   line-height: 100%;
   width: 88px;
-  height: 30px;
+  height: 28px;
   padding: 0px;
   background: #ffffff;
   cursor: pointer;

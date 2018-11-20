@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled, { StyledComponentClass } from "styled-components";
 
 export const TimePickerContent = styled("div")`
   --styled: "TimePickerContent";
+  font-family: PingFangSC-Regular, Microsoft YaHei, STXihei, PingFangSC-Regular,
+    Helvetica, ArialMT !important;
   width: 520px;
   height: 397px;
   .time-picker-title-line {

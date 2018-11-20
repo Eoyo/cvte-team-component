@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { StyledComponentClass } from "styled-components";
 
 const config = {
   darkPrimary: "#04bbc2",
@@ -7,7 +7,7 @@ const config = {
   lighterPrimary: "#e3f0f0",
   panelHeight: "50px",
   ClickOuter: "18px",
-  ClickInner: "52px"
+  ClickInner: "52px",
 };
 
 export const DateCalenderWrapper = styled("div")`

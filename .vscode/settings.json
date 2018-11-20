@@ -1,0 +1,60 @@
+{
+  "explorer.confirmDelete": false,
+  "prettier.tabWidth": 2,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "prettier.singleQuote": false,
+  "explorer.confirmDragAndDrop": false,
+  "git.autofetch": true,
+  "material-icon-theme.folders.theme": "classic",
+  "workbench.iconTheme": "material-icon-theme",
+  "prettier.semi": true,
+  "prettier.trailingComma": "es5",
+  "prettier.printWidth": 80,
+  "editor.formatOnSave": true,
+  "insertDateString.format": "----- YYYY-MM-DD",
+  "todohighlight.keywords": [
+    {
+      "text": "yet",
+      "color": "#e3b",
+      "backgroundColor": "rgba(0,0,0,0)",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": " yet)",
+      "color": "#f37f5f",
+      "backgroundColor": "rgba(0,0,0,0)",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "Neuron",
+      "color": "#9d3bea",
+      "backgroundColor": "rgba(0,0,0,0)",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "S.",
+      "color": "#ea7a00",
+      "backgroundColor": "rgba(0,0,0,0)",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "!!",
+      "color": "#ff3f4d",
+      "backgroundColor": "rgba(0,0,0,0)",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "@@",
+      "color": "#26bd5b",
+      "backgroundColor": "rgba(0,0,0,0)",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "reducers",
+      "color": "#26aa5b",
+      "backgroundColor": "rgba(0,0,0,0)",
+      "overviewRulerColor": "grey"
+    }
+  ],
+  "fileheader.tpl": "/*\r\n * @Date: {createTime} \r\n * @Last Modified by:   {lastModifiedBy} \r\n * @Last Modified time: {updateTime} \r\n */\r\n"
+}
