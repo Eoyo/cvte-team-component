@@ -38,6 +38,22 @@ if (ele) {
       console.log("to close");
     }
   });
+
+  // 传参的使用用例
+  let time = moment(moment(Date.now()).format("YYYY-MM-DD"), "YYYY-MM-DD");
+  setInterval(() => {
+    time = time.add(1, "d").add(15, "m");
+
+    // !!! 每次传值, 不要穿引用!!!
+    let data = {
+      day: time.clone(),
+      startTime: time.clone().add(15, "m"),
+      endTime: time.clone().add(30, "m")
+    };
+    update({
+      defaultValue: data
+    });
+  }, 1000);
 }
 ```
 
